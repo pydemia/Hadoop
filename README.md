@@ -109,6 +109,18 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+## Configuring Key Based Login
+
+```sh
+ su - hadoop
+ssh-keygen -t rsa
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-master
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-slave-1
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-slave-2
+chmod 0600 ~/.ssh/authorized_keys
+exit
+```
+
 ## Install Hadoop distribution
 
 ```sh
