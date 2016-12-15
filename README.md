@@ -24,17 +24,16 @@ sudo vi /etc/network/interfaces
 ```
 
 ```sh
-auto [adaptername]
-iface [adaptername] inet dhcp
-```
+auto enp0s3
+iface enp0s3 inet dhcp
 
-to
-```sh
-iface [adaptername] inet static
-address 131.121.45.11
+
+auto enp0s8
+iface enp0s8 inet static
+address 192.168.56.11
 netmask 255.255.255.0
-network 131.121.45.0
-gateway 131.121.45.1
+network 192.168.56.0
+gateway 192.168.56.1
 
 dns-nameservers 168.126.63.1 168.126.63.2 8.8.8.8
 ```
@@ -76,13 +75,13 @@ sudo vi /etc/hosts
 
 127.0.0.1         localhost
 
-131.121.45.11     hadoop-m1
-131.121.45.12     hadoop-m2
+192.168.56.11     hadoop-m1
+192.168.56.12     hadoop-m2
 
-131.121.45.21     hadoop-s1
-131.121.45.22     hadoop-s2
-131.121.45.23     hadoop-s3
-131.121.45.24     hadoop-s4
+192.168.56.21     hadoop-s1
+192.168.56.22     hadoop-s2
+192.168.56.23     hadoop-s3
+192.168.56.24     hadoop-s4
 ```
 
 ## Setup SSH Server
