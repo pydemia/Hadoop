@@ -18,6 +18,12 @@
 ```sh
 sudo passwd root
 ```
+## Create Group for HADOOP User
+
+```sh
+sudo groupadd hadoop
+sudo usermod -g hadoop [username]
+```
 
 ## IP change(Install: Internet with ```enp0s3```)
 ```sh
@@ -124,6 +130,9 @@ chmod 0600 ~/.ssh/authorized_keys
 exit
 ```
 
+## Prepare DataNode (Clone VM to IMPORT)
+
+
 ## Install Hadoop distribution
 
 ```sh
@@ -134,10 +143,10 @@ sudo mv hadoop-2.7.2 /usr/local/hadoop
 sudo mkdir -p /usr/local/hadoop_work/hdfs/namenode
 sudo mkdir -p /usr/local/hadoop_work/hdfs/namesecondary
 
-sudo chown -R [user]:[group] hadoop
-sudo chown -R [user]:[group] hadoop_work
-
+sudo chown -R [user]:hadoop hadoop
+sudo chown -R [user]:hadoop hadoop_work
 ```
+
 ## Setup Environment
 
 ```sh
@@ -240,10 +249,6 @@ vi hdfs-site.xml
     <property>
         <name>dfs.namenode.checkpoint.dir</name>
         <value>file:/usr/local/hadoop_work/hdfs/namesecondary</value>
-    </property>
-    <property>
-    <name>dfs.secondary.http.address</name>
-    <value>hd0m2:50090</value>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
@@ -384,6 +389,19 @@ sudo mv * ../
 ---
 # Creating the DataNode
 
+## Import cloned VM
+
+### Change ```hostname``` of Each DataNodes
+
+```sh
+sudo vi /etc/hostname
+
+hd0s1
+```
+and 
+```sh
+sudo reboot
+```
 
 ## Adding the DataNodes in Master
 
@@ -399,39 +417,74 @@ hd0s3
 hd0s4
 ```
 
+# Configuring the DataNode
 
+## Install Hadoop Distribution From NameNode
 
+### Copy Hadoop From NameNode to Each DataNode
 
-
-## Confiture ```mapred-site.xml```
+From Each DataNode
 
 ```sh
-cp mapred-site.xml.template mapred-site.xml
-vi mapred-site.xml
+cd /usr/local
+sudo scp -r [username]@hd0s1:/usr/local/hadoop /usr/local
 ```
 
+### Create Folders in Each DataNode
 ```sh
+sudo mkdir -p /usr/local/hadoop_work/hdfs/datanode
+sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/local
+sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/log
 
-```
-## Confiture ```mapred-site.xml```
-
-```sh
-cp mapred-site.xml.template mapred-site.xml
-vi mapred-site.xml
-```
-
-```sh
-
+sudo chown -R [user]:hadoop /usr/local/hadoop
+sudo chown -R [user]:hadoop /usr/local/hadoop_work
 ```
 
-## Confiture ```mapred-site.xml```
+cd /usr/local
+sudo groupadd hadoop
+
+sudo usermod -g hadoop dawkiny
+sudo scp -r dawkiny@hd0m1:/usr/local/hadoop /usr/local
+
+sudo mkdir -p /usr/local/hadoop_work/hdfs/datanode
+sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/local
+sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/log
+sudo chown -R dawkiny:hadoop hadoop
+sudo chown -R dawkiny:hadoop hadoop_work
+ls -al
+
+## Confiture ```hdfs-site.xml```
 
 ```sh
-cp mapred-site.xml.template mapred-site.xml
-vi mapred-site.xml
+vi hdfs-site.xml
 ```
 
-```sh
+add This: 
+```xml
+    <property>
+    <name>dfs.secondary.http.address</name>
+    <value>hd0m2:50090</value>
+    </property>
+```
 
+## Install Hadoop Distribution From NameNode
+
+### Copy Hadoop From NameNode to SecondaryNameNode
+
+From SecondaryNameNode
+
+```sh
+cd /usr/local
+sudo scp -r [username]@hd0s1:/usr/local/hadoop /usr/local
+```
+
+### Create Folders in Each DataNode
+```sh
+sudo mkdir -p /usr/local/hadoop_work/hdfs/datanode
+sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/local
+sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/log
+
+sudo chown -R [user]:hadoop /usr/local/hadoop
+sudo chown -R [user]:hadoop /usr/local/hadoop_work
 ```
 
