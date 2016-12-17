@@ -1,3 +1,5 @@
+# Hadoop Setting - SecondaryNameNode
+
 
 ## Confiture ```hdfs-site.xml```
 
