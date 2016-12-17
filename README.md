@@ -210,11 +210,18 @@ vi core-site.xml
         <value>hdfs://NameNode:8020/</value>
     </property>
     <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/data/hadoop/tmp</value>
+    </property>
+    <property>
         <name>io.file.buffer.size</name>
         <value>131072</value>
     </property>
 </configuration>
 ```
+or  
+<name>fs.defaultFS</name>  
+<value>hdfs://namenode:9000</value>
 
 ## Confiture ```hdfs-site.xml```
 
@@ -233,6 +240,10 @@ vi hdfs-site.xml
     <property>
         <name>dfs.namenode.checkpoint.dir</name>
         <value>file:/usr/local/hadoop_work/hdfs/namesecondary</value>
+    </property>
+    <property>
+    <name>dfs.secondary.http.address</name>
+    <value>secondarynamenode:50090</value>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
