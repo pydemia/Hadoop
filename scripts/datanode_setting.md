@@ -1,4 +1,4 @@
-# Hadoop Setting - DataNode
+# Hadoop Setting - 2.DataNode
 
 ---
 # Creating the DataNode
