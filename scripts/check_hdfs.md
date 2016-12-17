@@ -1,11 +1,13 @@
+# Hadoop Setting - 4. Check HDFS Status
 
-# Start HDFS
+
+## Start HDFS
 
 ```sh
 start-dfs.sh
 ```
 
-# Create HDFS directories(/tmp, /user, /usr/app, /var/log/hadoop-yarn, /var/log/hadoop-yarn/apps
+## Create HDFS directories(/tmp, /user, /usr/app, /var/log/hadoop-yarn, /var/log/hadoop-yarn/apps
 
 ```sh
 hdfs fs -mkdir /tmp
@@ -23,20 +25,20 @@ Check it:
 hdfs fs -ls -R /
 ```
 
-# Start YARN Cluster
+## Start YARN Cluster
 
 ```sh
 start-yarn.sh
 ```
 
-# Start MR History Server
+## Start MR History Server
 
 ```sh
 mr-jobhistory-daemon.sh start historyserver
 ```
 
 
-# Check Daemons
+## Check Daemons
 
 ```sh
 jps
@@ -58,16 +60,16 @@ From Each DataNode:
 >Jps
 
 
-# Test HDFS by Uploading Files
+## Test HDFS by Uploading Files
 
-## On Linux
+### On Linux
 ```sh
 mkdir ~/test
 echo -p "This, is, dummy, file" > ~/test/test_dummy.csv 
 ```
 
 
-## on HDFS
+### on HDFS
 
 ```sh
 hdfs dfs -put ~/test /
@@ -78,18 +80,18 @@ hdfs dfs -cat /test/test_dummy.csv
 hdfs dfs -rm -r /test
 ```
 
-# Show HDFS on Browser
+## Show HDFS on Browser
 
-## NameNode
+### NameNode
 http://192.168.56.11:50070/
 
-## HDFS
+### HDFS
 http://192.168.56.11:50070/explorer.html
 
-## Resource Manager
+### Resource Manager
 http://192.168.56.11:8088/
 
-## History Server
+### History Server
 http://192.168.56.11:19888/
 
 
