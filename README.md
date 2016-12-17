@@ -6,6 +6,8 @@
 
 * NAT Networks for Internet ```enp0s3```  
 * Host-only Networks for Inner connection ```enp0s8```  
+> Disable ```DHCP Server```  
+> ```Adapter```, Set IPv4 Address as ```Gateway``` for Static IP:(```192.168.56.1```)
 
 ### Set Each Machine Before Install
 
@@ -52,6 +54,7 @@ broadcast 192.168.56.255
 
 dns-nameservers 168.126.63.1 168.126.63.2 8.8.8.8
 ```
+
 
 ```sh
 sudo vi /etc/resolv.conf
@@ -194,7 +197,7 @@ $ scp -r hadoop hadoop-slave-2:/opt/hadoop
 cd /usr/local/hadoop/etc/hadoop
 vi core-site.xml
 ```
-```sh
+```xml
 <?xml version="1.0"?>
 <!-- core-site.xml -->
 <configuration>
@@ -215,7 +218,7 @@ vi core-site.xml
 vi hdfs-site.xml
 ```
 
-```sh
+```xml
 <?xml version="1.0"?>
 <!-- hdfs-site.xml -->
 <configuration>
@@ -249,7 +252,7 @@ cp mapred-site.xml.template mapred-site.xml
 vi mapred-site.xml
 ```
 
-```sh
+```xml
 <?xml version="1.0"?>
 <!-- mapred-site.xml -->
 <configuration>
@@ -285,7 +288,7 @@ vi mapred-site.xml
 vi yarn-site.xml
 ```
 
-```sh
+```xml
 <?xml version="1.0"?>
 <!-- yarn-site.xml -->
 <configuration>
