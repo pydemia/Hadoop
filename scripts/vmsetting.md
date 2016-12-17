@@ -1,4 +1,4 @@
-#VM Setting
+# Hadoop Setting - 0.VM Setting
 
 ### Global Network Setting  
 
