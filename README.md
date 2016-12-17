@@ -133,6 +133,10 @@ sudo tar -xzvf hadoop-2.7.2.tar.gz >> /dev/null
 sudo mv hadoop-2.7.2 /usr/local/hadoop
 sudo mkdir -p /usr/local/hadoop_work/hdfs/namenode
 sudo mkdir -p /usr/local/hadoop_work/hdfs/namesecondary
+
+sudo chown -R [user]:[group] hadoop
+sudo chown -R [user]:[group] hadoop_work
+
 ```
 ## Setup Environment
 
@@ -153,7 +157,7 @@ export HADOOP_COMMON_HOME=$HADOOP_HOME
 export HADOOP_HDFS_HOME=$HADOOP_HOME
 export YARN_HOME=$HADOOP_HOME
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib"
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
 export CLASSPATH=$CLASSPATH:/usr/local/hadoop/lib/*:.
 
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.security.egd=file:/dev/../dev/urandom"
@@ -201,14 +205,14 @@ vi core-site.xml
 <?xml version="1.0"?>
 <!-- core-site.xml -->
 <configuration>
-<property>
-<name>fs.defaultFS</name>
-<value>hdfs://NameNode:8020/</value>
-</property>
-<property>
-<name>io.file.buffer.size</name>
-<value>131072</value>
-</property>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://NameNode:8020/</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
 </configuration>
 ```
 
@@ -222,26 +226,26 @@ vi hdfs-site.xml
 <?xml version="1.0"?>
 <!-- hdfs-site.xml -->
 <configuration>
-<property>
-<name>dfs.namenode.name.dir</name>
-<value>file:/usr/local/hadoop_work/hdfs/namenode</value>
-</property>
-<property>
-<name>dfs.datanode.data.dir</name>
-<value>file:/usr/local/hadoop_work/hdfs/datanode</value>
-</property>
-<property>
-<name>dfs.namenode.checkpoint.dir</name>
-<value>file:/usr/local/hadoop_work/hdfs/namesecondary</value>
-</property>
-<property>
-<name>dfs.replication</name>
-<value>2</value>
-</property>
-<property>
-<name>dfs.block.size</name>
-<value>134217728</value>
-</property>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:/usr/local/hadoop_work/hdfs/namenode</value>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.dir</name>
+        <value>file:/usr/local/hadoop_work/hdfs/namesecondary</value>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:/usr/local/hadoop_work/hdfs/datanode</value>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+    <property>
+        <name>dfs.block.size</name>
+        <value>134217728</value>
+    </property>
 </configuration>
 ```
 
@@ -256,26 +260,30 @@ vi mapred-site.xml
 <?xml version="1.0"?>
 <!-- mapred-site.xml -->
 <configuration>
-<property>
-<name>mapreduce.framework.name</name>
-<value>yarn</value>
-</property>
-<property>
-<name>mapreduce.jobhistory.address</name>
-<value>NameNode:10020</value>
-</property>
-<property>
-<name>mapreduce.jobhistory.webapp.address</name>
-<value>NameNode:19888</value>
-</property>
-<property>
-<name>yarn.app.mapreduce.am.staging-dir</name>
-<value>/user/app</value>
-</property>
-<property>
-<name>mapred.child.java.opts</name>
-<value>-Djava.security.egd=file:/dev/../dev/urandom</value>
-</property>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>namenode:9001</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>NameNode:10020</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>NameNode:19888</value>
+    </property>
+    <property>
+        <name>yarn.app.mapreduce.am.staging-dir</name>
+        <value>/user/app</value>
+    </property>
+    <property>
+        <name>mapred.child.java.opts</name>
+        <value>-Djava.security.egd=file:/dev/../dev/urandom</value>
+    </property>
 </configuration>
 ```
 
@@ -292,42 +300,42 @@ vi yarn-site.xml
 <?xml version="1.0"?>
 <!-- yarn-site.xml -->
 <configuration>
-<property>
-<name>yarn.resourcemanager.hostname</name>
-<value>NameNode</value>
-</property>
-<property>
-<name>yarn.resourcemanager.bind-host</name>
-<value>0.0.0.0</value>
-</property>
-<property>
-<name>yarn.nodemanager.bind-host</name>
-<value>0.0.0.0</value>
-</property>
-<property>
-<name>yarn.nodemanager.aux-services</name>
-<value>mapreduce_shuffle</value>
-</property>
-<property>
-<name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
-<value>org.apache.hadoop.mapred.ShuffleHandler</value>
-</property>
-<property>
-<name>yarn.log-aggregation-enable</name>
-<value>true</value>
-</property>
-<property>
-<name>yarn.nodemanager.local-dirs</name>
-<value>file:/usr/local/hadoop_work/yarn/local</value>
-</property>
-<property>
-<name>yarn.nodemanager.log-dirs</name>
-<value>file:/usr/local/hadoop_work/yarn/log</value>
-</property>
-<property>
-<name>yarn.nodemanager.remote-app-log-dir</name>
-<value>hdfs://NameNode:8020/var/log/hadoop-yarn/apps</value>
-</property>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>NameNode</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+    <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.local-dirs</name>
+        <value>file:/usr/local/hadoop_work/yarn/local</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.log-dirs</name>
+        <value>file:/usr/local/hadoop_work/yarn/log</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.remote-app-log-dir</name>
+        <value>hdfs://NameNode:8020/var/log/hadoop-yarn/apps</value>
+    </property>
 </configuration>
 ```
 
@@ -345,6 +353,22 @@ hd0m1
 ```sh
 /usr/local/hadoop/bin/hadoop namenode -format
 ```
+
+You would see the message:
+>Storage directory /usr/local/hadoop_work/hdfs/namenode has been successfully formatted.
+
+Please check hdfs is running properly:
+```sh
+hdfs dfs -ls
+```
+
+In case you meet ```WARN util.NativeCodeLoader``` error, move your native-hadoop-library:
+```sh
+cd $HADOOP_HOME/lib/native
+sudo mv * ../
+```
+
+
 
 ---
 # Creating the DataNode
