@@ -26,7 +26,6 @@ sudo scp -r [username]@hd0m1:/usr/local/hadoop /usr/local
 
 ### Create Folders in SecondaryNameNode
 ```sh
-sudo mkdir -p /usr/local/hadoop_work/hdfs/secondarynamenode
 sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/local
 sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/log
 
