@@ -1,4 +1,4 @@
-# Hadoop Setting - 4. Check HDFS Status
+# Hadoop Setting - 5. Check HDFS Status
 
 
 ## Start HDFS
