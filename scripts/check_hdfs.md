@@ -7,7 +7,8 @@
 start-dfs.sh
 ```
 
-## Create HDFS directories(/tmp, /user, /usr/app, /var/log/hadoop-yarn, /var/log/hadoop-yarn/apps
+## Create HDFS directories
+(/tmp, /user, /usr/app, /var/log/hadoop-yarn, /var/log/hadoop-yarn/apps)
 
 ```sh
 hdfs fs -mkdir /tmp
