@@ -44,7 +44,7 @@ cd /usr/local
 sudo scp -r [username]@hd0s1:/usr/local/hadoop /usr/local
 ```
 
-### Create Folders in Each DataNode
+### Create Folders in Each DataNodes
 ```sh
 sudo mkdir -p /usr/local/hadoop_work/hdfs/datanode
 sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/local
