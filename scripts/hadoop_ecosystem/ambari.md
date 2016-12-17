@@ -14,6 +14,7 @@ sudo apt-get install ambari-server
 ```sh
 sudo ambari-server setup
 ```
+```sh
 > Using python  /usr/bin/python  
 > Setup ambari-server  
 > Checking SELinux...  
@@ -63,7 +64,7 @@ sudo ambari-server setup
 > .......  
 > Adjusting ambari-server permissions and ownership...  
 > Ambari Server 'setup' completed successfully.  
-
+```
 
 
 
