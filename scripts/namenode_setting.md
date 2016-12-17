@@ -1,4 +1,4 @@
-# Hadoop Setting - NameNode
+# Hadoop Setting - 1.NameNode
 
 ## SU Password
 ```sh
