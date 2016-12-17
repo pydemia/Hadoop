@@ -243,7 +243,7 @@ vi hdfs-site.xml
     </property>
     <property>
     <name>dfs.secondary.http.address</name>
-    <value>secondarynamenode:50090</value>
+    <value>hd0m2:50090</value>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
