@@ -15,6 +15,9 @@ ln -s hbase-1.2.4/ hbase
 
 ## ```.bashrc```
 ```sh
+vi ~/.bashrc
+```
+```sh
 # Hbase
 export HBASE_HOME=/usr/local/hadoop_eco/hbase
 export HBASE_CLASSPATH=$HADOOP_CONF_DIR
@@ -32,6 +35,16 @@ ssh dawkiny@hd0s2 "mkdir -p /usr/local/hadoop_dat/hbase/data"
 ssh dawkiny@hd0s3 "mkdir -p /usr/local/hadoop_dat/hbase/data"
 ssh dawkiny@hd0s4 "mkdir -p /usr/local/hadoop_dat/hbase/data"
 ```
+
+```sh
+mkdir -p /usr/local/hadoop_log/hbase/logs
+ssh dawkiny@hd0m2 "mkdir -p /usr/local/hadoop_log/hbase/logs"
+ssh dawkiny@hd0s1 "mkdir -p /usr/local/hadoop_log/hbase/logs"
+ssh dawkiny@hd0s2 "mkdir -p /usr/local/hadoop_log/hbase/logs"
+ssh dawkiny@hd0s3 "mkdir -p /usr/local/hadoop_log/hbase/logs"
+ssh dawkiny@hd0s4 "mkdir -p /usr/local/hadoop_log/hbase/logs"
+```
+
 
 ## Create Links
 
@@ -100,7 +113,7 @@ vi $HBASE_HOME/conf/hbase-env.sh
 
 
 ```sh
-export HBASE_PID_DIR=/usr/local/hadoop_var/hbase/
+export HBASE_PID_DIR=/usr/local/hadoop_var/hbase
 export HBASE_MANAGES_ZK=false                     
 export HBASE_REGIONSERVERS=/usr/local/hadoop_eco/hbase/conf/regionservers
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
@@ -123,7 +136,9 @@ hd0s4
 ## Configure ```backup servers```
 ```sh
 vi $HBASE_HOME/conf/backup-masters
-hdm02
+```
+```sh
+hd0m2
 ```
 
 ## Push to HBase Nodes
@@ -161,7 +176,7 @@ scp -r /usr/local/hadoop_eco dawkiny@hd0s4:/usr/local/
 
 Then
 ```sh
-bash push-all.sh
+bash ~/push-all.sh
 ```
 
 
