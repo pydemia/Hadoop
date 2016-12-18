@@ -32,8 +32,8 @@ zookeeper.connect=hd0m1:2181,hd0m2:2181,hd0s1:2181,hd0s2:2181,hd0s3:2181,hd0s4:2
 ## Start ```kafka```
 ```sh
 cd /usr/local/hadoop_eco/kafka
-zookeeper-server-start.sh zookeeper.properties    # zookeeper is needed for running kafka
-kafka-server-start.sh server.properties
+zookeeper-server-start.sh $KAFKA_CONFIG/zookeeper.properties    # embedded zookeeper: zookeeper is needed for running kafka
+kafka-server-start.sh $KAFKA_CONFIG/server.properties
 ```
 
 ## Stop ```kafka```
