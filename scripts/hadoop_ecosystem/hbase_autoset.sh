@@ -29,6 +29,7 @@ ln -s $HADOOP_HOME/etc/hadoop/hdfs-site.xml hdfs-site.xml
 ln -s $HADOOP_HOME/etc/hadoop/core-site.xml core-site.xml
 ln -s $HADOOP_HOME/etc/hadoop/yarn-site.xml yarn-site.xml
 
+
 source ~/.bashrc
 
 echo " " >> $HBASE_HOME/conf/hbase-env.sh 
