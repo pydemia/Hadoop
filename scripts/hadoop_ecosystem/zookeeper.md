@@ -35,7 +35,7 @@ mv -r /etc/zookeeper /usr/local/hadoop_eco/zookeeper/
 ```
 
 ---
-## Zookeeper Configuration
+### Zookeeper Configuration
 ```sh
 vi /etc/zookeeper/conf/zoo.cfg
 ```
@@ -67,7 +67,7 @@ PATH=$ZOOKEEPER_HOME/bin:$PATH
 
 ## Install Zookeeper packages manually
 
-# Standby to Each Server
+### Standby to Each Server
 
 Create ```hadoop_eco``` folder on Each Server to use it as a path of fully-covered hadoop ecosystem
 ```sh
@@ -95,7 +95,7 @@ mv zookeeper-3.4.9/ zookeeper
 ```
 
 ---
-## Zookeeper Configuration
+### Zookeeper Configuration
 
 ### Create ```dataDir```
 ```sh
@@ -127,14 +127,14 @@ autopurge.purgeInterval=12
 ```
 
 
-## Copy ```hadoop_eco``` to Each Server
+### Copy ```hadoop_eco``` to Each Server
 
 ```sh 
 scp -r /usr/local/hadoop_eco [username]@hd0m2:/usr/local
 scp -r /usr/local/hadoop_eco [username]@hd0s1:/usr/local
 ```
 
-## Create ```myid``` file to Each Server
+### Create ```myid``` file to Each Server
 
 ```sh
 vi /usr/local/hadoop_eco/zookeeper/data/myid
@@ -143,7 +143,7 @@ vi /usr/local/hadoop_eco/zookeeper/data/myid
 ```
 
 
-## Update ```.bashrc``` & Run ```zookeeper```
+### Update ```.bashrc``` & Run ```zookeeper```
 
 ```sh
 vi ~/.bashrc
