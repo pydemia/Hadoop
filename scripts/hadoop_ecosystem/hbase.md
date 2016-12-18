@@ -185,6 +185,10 @@ bash ~/push-all.sh
 
 On ```HBase.Master```:
 ```sh
+start-hbase.sh
+```
+Or
+```sh
 ssh dawkiny@hd0m1 "/usr/local/hadoop_eco/hbase/bin/start-hbase.sh"
 ```
 In case you need to add hosts to known lists
