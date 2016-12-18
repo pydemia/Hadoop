@@ -38,7 +38,7 @@ mv zookeeper-3.4.9/ zookeeper
 ### Create ```dataDir```
 ```sh
 cd /usr/local/hadoop_dat
-mkdir -p /usr/local/hadoop_datzookeeper/data
+mkdir -p /usr/local/hadoop_dat/zookeeper/data
 ```
 
 ### Create ```zoo.cfg```
