@@ -34,7 +34,7 @@ sudo chown -R [username]:hadoop /usr/local/hadoop_eco/zookeeper
 mv -r /etc/zookeeper /usr/local/hadoop_eco/zookeeper/
 ```
 
----
+
 ### Zookeeper Configuration
 ```sh
 vi /etc/zookeeper/conf/zoo.cfg
@@ -65,6 +65,9 @@ PATH=$ZOOKEEPER_HOME/bin:$PATH
 ```
 
 
+
+
+---
 ## Install Zookeeper packages manually
 
 ### Standby to Each Server
@@ -94,7 +97,6 @@ tar zxvf zookeeper-3.4.9.tar.gz
 mv zookeeper-3.4.9/ zookeeper
 ```
 
----
 ### Zookeeper Configuration
 
 ### Create ```dataDir```
