@@ -105,8 +105,8 @@ mv zookeeper-3.4.9/ zookeeper
 
 ### Create ```dataDir```
 ```sh
-cd zookeeper
-mkdir data
+cd /usr/local/hadoop_dat
+mkdir -p /usr/local/hadoop_datzookeeper/data
 ```
 
 ### Create ```zoo.cfg```
@@ -120,7 +120,8 @@ vi zoo.cfg
 # the directory where the snapshot is stored.
 # do not use /tmp for storage, /tmp here is just 
 # example sakes.
-dataDir=[your dataDir path]
+dataDir=/usr/local/hadoop_dat/zookeeper/data
+
 
 # specify all zookeeper servers
 # The fist port is used by followers to connect to the leader
@@ -149,25 +150,21 @@ scp -r /usr/local/hadoop_eco [username]@hd0s4:/usr/local
 
 On Master:
 ```sh
-cd /usr/local/hadoop_var
-mkdir zookeeper
-scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0m2:/usr/local/hadoop_var
-scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s1:/usr/local/hadoop_var
-scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s2:/usr/local/hadoop_var
-scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s3:/usr/local/hadoop_var
-scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s4:/usr/local/hadoop_var
+cd /usr/local/hadoop_dat/zookeeper/data
 
-echo 1 > myid
-ssh dawkiny@hd0m2 "echo 2 > /usr/local/hadoop_var/zookeeper/myid"
-ssh dawkiny@hd0s1 "echo 3 > /usr/local/hadoop_var/zookeeper/myid"
-ssh dawkiny@hd0s2 "echo 4 > /usr/local/hadoop_var/zookeeper/myid"
-ssh dawkiny@hd0s3 "echo 5 > /usr/local/hadoop_var/zookeeper/myid"
-ssh dawkiny@hd0s4 "echo 6 > /usr/local/hadoop_var/zookeeper/myid"
+scp -r /usr/local/hadoop_dat/zookeeper/data dawkiny@hd0m2:/usr/local/hadoop_dat
+scp -r /usr/local/hadoop_dat/zookeeper/data dawkiny@hd0s1:/usr/local/hadoop_dat
+scp -r /usr/local/hadoop_dat/zookeeper/data dawkiny@hd0s2:/usr/local/hadoop_dat
+scp -r /usr/local/hadoop_dat/zookeeper/data dawkiny@hd0s3:/usr/local/hadoop_dat
+scp -r /usr/local/hadoop_dat/zookeeper/data dawkiny@hd0s4:/usr/local/hadoop_dat
 
-
-1     # It refers to your zookeeper server numbers.
+echo 1 > /usr/local/hadoop_dat/zookeeper/data/myid
+ssh dawkiny@hd0m2 "echo 2 > /usr/local/hadoop_dat/zookeeper/data/myid"
+ssh dawkiny@hd0s1 "echo 3 > /usr/local/hadoop_dat/zookeeper/data/myid"
+ssh dawkiny@hd0s2 "echo 4 > /usr/local/hadoop_dat/zookeeper/data/myid"
+ssh dawkiny@hd0s3 "echo 5 > /usr/local/hadoop_dat/zookeeper/data/myid"
+ssh dawkiny@hd0s4 "echo 6 > /usr/local/hadoop_dat/zookeeper/data/myid"
 ```
-
 
 ### Update ```.bashrc``` & Run ```zookeeper```
 
