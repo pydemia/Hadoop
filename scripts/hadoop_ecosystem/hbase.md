@@ -52,7 +52,7 @@ ssh dawkiny@hd0s4 "mkdir -p /usr/local/hadoop_log/hbase/logs"
 ln -s $HADOOP_HOME/etc/hadoop/hdfs-site.xml hdfs-site.xml
 ln -s $HADOOP_HOME/etc/hadoop/core-site.xml core-site.xml
 ln -s $HADOOP_HOME/etc/hadoop/yarn-site.xml yarn-site.xml
-
+```
 ## Configure ```hbase-site.xml```
 
 ```sh
@@ -211,3 +211,13 @@ hbase shell
 * slave2 : http://192.168.56.22:16030  
 * slave3 : http://192.168.56.23:16030  
 * slave4 : http://192.168.56.24:16030  
+
+
+## Stop ```HBase```
+
+On ```HBase.Master```:
+```sh
+stop-hbase.sh
+```
+
+In Case ```master.pid: No such file or directory```, ```start-hbase.sh``` again.
