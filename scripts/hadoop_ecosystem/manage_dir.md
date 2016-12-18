@@ -1,6 +1,6 @@
 # Hadoop Directory Management
 
-## Data
+## Create Directory
 ```sh
 cd ~/
 mkdir hadoop_dir
