@@ -98,12 +98,13 @@ vi $HBASE_HOME/conf/hbase-env.sh
 ```
 
 
-IF ```ZOOKEEPER``` is not installed:
+
 ```sh
 export HBASE_PID_DIR=/usr/local/hadoop_var/hbase/
-export HBASE_MANAGES_ZK=false
+export HBASE_MANAGES_ZK=false                     
 export HBASE_REGIONSERVERS=/usr/local/hadoop_eco/hbase/conf/regionservers
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
+export HBASE_LOG_DIR=/usr/local/hadoop_log/hbase/logs
 ```
 
 ## Configure```regionservers```
@@ -112,7 +113,7 @@ export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 vi $HBASE_HOME/conf/regionservers
 ```
 ```sh
-hd0m1
+hd0m2
 hd0s1
 hd0s2
 hd0s3
@@ -122,8 +123,7 @@ hd0s4
 ## Configure ```backup servers```
 ```sh
 vi $HBASE_HOME/conf/backup-masters
-node1
-node2
+hdm02
 ```
 
 ## Push to HBase Nodes
@@ -170,7 +170,7 @@ bash push-all.sh
 
 On ```HBase.Master```:
 ```sh
-ssh dawkiny@hd0m2 "/usr/local/hadoop_eco/hbase/bin/start-hbase.sh"
+ssh dawkiny@hd0m1 "/usr/local/hadoop_eco/hbase/bin/start-hbase.sh"
 ```
 In case you need to add hosts to known lists
 ```sh
@@ -185,9 +185,9 @@ hbase shell
 
 ## Access via WEB
 
-* master : http://192.168.56.12:16010
+* master : http://192.168.56.11:16010
 
-* slave0 : http://192.168.56.11:16010
+* slave0 : http://192.168.56.12:16010
 * slave1 : http://192.168.56.21:16030  
 * slave2 : http://192.168.56.22:16030  
 * slave3 : http://192.168.56.23:16030  
