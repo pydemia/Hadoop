@@ -103,3 +103,8 @@ In case you need to add hosts to known lists
 yes
 ```
 
+## Check ```HBase```
+```sh
+jps
+hbase shell
+```
