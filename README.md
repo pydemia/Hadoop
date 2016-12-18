@@ -7,6 +7,9 @@
 * [SecondaryNameNode Setting](https://github.com/dawkiny/Hadoop/blob/master/scripts/basic_setting/secondarynamenode_setting.md)  
 * [Check HDFS](https://github.com/dawkiny/Hadoop/blob/master/scripts/basic_setting/check_hdfs.md)   
 
+## Hadoop Directory Management
+* [Hadoop Directory Management](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/manage_dir.md)   
+
 ## Hadoop Ecosystem
 * [Ambari](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/ambari.md)   
 * [Zookeeper](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/zookeeper.md)   
