@@ -39,7 +39,7 @@ vi $HBASE_HOME/conf/hbase-site.xml
 <configuration>
         <property>
                 <name>hbase.rootdir</name
-                <value>hdfs://hd0m1:9000/hbase</value>
+                <value>hdfs://hd0m2:9000/hbase</value>
         </property>
         <property>
                 <name>hbase.master</name
@@ -47,7 +47,7 @@ vi $HBASE_HOME/conf/hbase-site.xml
         </property>
         <property>
                 <name>hbase.zookeeper.quorum</name
-                <value>hd0m1,hd0m2,hd0s1,hd0s2,hd0s3,hd0s4</value>
+                <value>hd0m2,hd0s1,hd0s2,hd0s3,hd0s4</value>
         </property>
         <property>
                 <name>hbase.zookeeper.property.dataDir</name
@@ -75,6 +75,7 @@ IF ```ZOOKEEPER``` is not installed:
 ```sh
 export HBASE_PID_DIR=/usr/local/hadoop_eco/hbase/pid/pids
 export HBASE_MANAGES_ZK=false
+export HBASE_REGIONSERVERS=${HBASE_HOME}/conf/regionservers
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 ```
 
@@ -84,8 +85,6 @@ export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 vi $HBASE_HOME/conf/regionservers
 ```
 ```sh
-hd0m1
-hd0m2
 hd0s1
 hd0s2
 hd0s3
@@ -111,8 +110,7 @@ hbase shell
 
 ## Access via WEB
 
-* master : http://192.168.56.12:16010  
-* slave0 : http://192.168.56.11:16030  
+* master : http://192.168.56.12:16010   
 * slave1 : http://192.168.56.21:16030  
 * slave2 : http://192.168.56.22:16030  
 * slave3 : http://192.168.56.23:16030  
