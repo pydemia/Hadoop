@@ -8,10 +8,10 @@ scp -r ~/.bashrc dawkiny@hd0s4:~/
 ## Re-run .bashrc
 source ~/.bashrc
 ssh dawkiny@hd0m2 source ~/.bashrc
-ssh dawkiny@hd0m2 source ~/.bashrc
-ssh dawkiny@hd0m2 source ~/.bashrc
-ssh dawkiny@hd0m2 source ~/.bashrc
-ssh dawkiny@hd0m2 source ~/.bashrc
+ssh dawkiny@hd0s1 source ~/.bashrc
+ssh dawkiny@hd0s2 source ~/.bashrc
+ssh dawkiny@hd0s3 source ~/.bashrc
+ssh dawkiny@hd0s4 source ~/.bashrc
 
 
 # Push Haddop Ecosystem Folder
