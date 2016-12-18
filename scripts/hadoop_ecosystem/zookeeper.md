@@ -145,8 +145,7 @@ scp -r /usr/local/hadoop_eco [username]@hd0s2:/usr/local
 scp -r /usr/local/hadoop_eco [username]@hd0s3:/usr/local
 scp -r /usr/local/hadoop_eco [username]@hd0s4:/usr/local
 ```
-
-### Create ```myid``` file to Each Server
+## Create ```myid``` file to Each Server
 
 ```sh
 vi /usr/local/hadoop_eco/zookeeper/data/myid
