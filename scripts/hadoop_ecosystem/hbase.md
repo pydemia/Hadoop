@@ -17,6 +17,7 @@ ln -s hbase-1.2.4/ hbase
 ```sh
 # Hbase
 export HBASE_HOME=/usr/local/hadoop_eco/hbase
+export HBASE_CLASSPATH=$HADOOP_CONF_DIR
 export PATH=$PATH:$HBASE_HOME
 export PATH=$PATH:$HBASE_HOME/bin
 ```
@@ -25,7 +26,19 @@ export PATH=$PATH:$HBASE_HOME/bin
 
 ```sh
 mkdir -p /usr/local/hadoop_dat/hbase/data
+ssh dawkiny@hd0m2 "mkdir -p /usr/local/hadoop_dat/hbase/data"
+ssh dawkiny@hd0s1 "mkdir -p /usr/local/hadoop_dat/hbase/data"
+ssh dawkiny@hd0s2 "mkdir -p /usr/local/hadoop_dat/hbase/data"
+ssh dawkiny@hd0s3 "mkdir -p /usr/local/hadoop_dat/hbase/data"
+ssh dawkiny@hd0s4 "mkdir -p /usr/local/hadoop_dat/hbase/data"
 ```
+
+## Create Links
+
+```sh
+ln -s $HADOOP_HOME/etc/hadoop/hdfs-site.xml hdfs-site.xml
+ln -s $HADOOP_HOME/etc/hadoop/core-site.xml core-site.xml
+ln -s $HADOOP_HOME/etc/hadoop/yarn-site.xml yarn-site.xml
 
 ## Configure ```hbase-site.xml```
 
@@ -40,17 +53,17 @@ vi $HBASE_HOME/conf/hbase-site.xml
 <configuration>
         <property>
                 <name>hbase.rootdir</name>
-                <value>hdfs://hd0m2:9000/hbase</value>
+                <value>hdfs://hd0m1:9000/hbase</value>
                 <description>The directory shared by RegionServers.
                 </description>
         </property>
         <property>
                 <name>hbase.master</name>
-                <value>hd0m2:6000</value>
+                <value>hd0m1:6000</value>
         </property>
         <property>
                 <name>hbase.zookeeper.quorum</name>
-                <value>hd0m1,hd0m2,hd0s1,hd0s2,hd0s3,hd0s4</value>
+                <value>hd0m1:2181,hd0m2:2181,hd0s1:2181,hd0s2:2181,hd0s3:2181,hd0s4:2181</value>
                 <description>The directory shared by RegionServers.
                 </description>
         </property>
@@ -70,8 +83,10 @@ vi $HBASE_HOME/conf/hbase-site.xml
                 </description>
         </property>
         <property>
-                <name>dfs.datanode.max.xcievers</name>
+                <name>dfs.datanode.max.transfer.threads</name>
                 <value>4096</value>
+                <description>dfs.datanode.max.xcievers
+                </description>
         </property>
 </configuration>
 ```
@@ -85,9 +100,9 @@ vi $HBASE_HOME/conf/hbase-env.sh
 
 IF ```ZOOKEEPER``` is not installed:
 ```sh
-export HBASE_PID_DIR=/usr/local/hadoop_eco/hbase/pid/pids
+export HBASE_PID_DIR=/usr/local/hadoop_var/hbase/
 export HBASE_MANAGES_ZK=false
-export HBASE_REGIONSERVERS=${HBASE_HOME}/conf/regionservers
+export HBASE_REGIONSERVERS=/usr/local/hadoop_eco/hbase/conf/regionservers
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 ```
 
@@ -104,6 +119,50 @@ hd0s3
 hd0s4
 ```
 
+## Configure ```backup servers```
+```sh
+vi $HBASE_HOME/conf/backup-masters
+node1
+node2
+```
+
+## Push to HBase Nodes
+```sh
+vi ~/push-all.sh
+```
+
+```sh
+#----------------Push to Nodes---------------#
+
+# Push .bashrc
+scp -r ~/.bashrc dawkiny@hd0m2:~/
+scp -r ~/.bashrc dawkiny@hd0s1:~/
+scp -r ~/.bashrc dawkiny@hd0s2:~/
+scp -r ~/.bashrc dawkiny@hd0s3:~/
+scp -r ~/.bashrc dawkiny@hd0s4:~/
+
+## Re-run .bashrc
+source ~/.bashrc
+ssh dawkiny@hd0m2 "source ~/.bashrc"
+ssh dawkiny@hd0s1 "source ~/.bashrc"
+ssh dawkiny@hd0s2 "source ~/.bashrc"
+ssh dawkiny@hd0s3 "source ~/.bashrc"
+ssh dawkiny@hd0s4 "source ~/.bashrc"
+
+
+# Push Haddop Ecosystem Folder
+scp -r /usr/local/hadoop_eco dawkiny@hd0m2:/usr/local/
+scp -r /usr/local/hadoop_eco dawkiny@hd0s1:/usr/local/
+scp -r /usr/local/hadoop_eco dawkiny@hd0s2:/usr/local/
+scp -r /usr/local/hadoop_eco dawkiny@hd0s3:/usr/local/
+scp -r /usr/local/hadoop_eco dawkiny@hd0s4:/usr/local/
+
+```
+
+Then
+```sh
+bash push-all.sh
+```
 
 
 
@@ -111,7 +170,7 @@ hd0s4
 
 On ```HBase.Master```:
 ```sh
-start-hbase.sh
+ssh dawkiny@hd0m2 "/usr/local/hadoop_eco/hbase/bin/start-hbase.sh"
 ```
 In case you need to add hosts to known lists
 ```sh
@@ -126,7 +185,9 @@ hbase shell
 
 ## Access via WEB
 
-* master : http://192.168.56.12:16010   
+* master : http://192.168.56.12:16010
+
+* slave0 : http://192.168.56.11:16010
 * slave1 : http://192.168.56.21:16030  
 * slave2 : http://192.168.56.22:16030  
 * slave3 : http://192.168.56.23:16030  
