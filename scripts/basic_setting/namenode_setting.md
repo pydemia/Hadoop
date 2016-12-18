@@ -142,6 +142,7 @@ java -version
 ```sh
 /usr/lib/jvm/java-7-oracle/jre# vi ~/.bashrc
 
+# Hadoop
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 export PATH=$PATH:$JAVA_HOME/bin
 export HADOOP_HOME=/usr/local/hadoop
