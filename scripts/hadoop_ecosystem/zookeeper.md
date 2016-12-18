@@ -1,75 +1,7 @@
 # Set up Zookeeper
 
-## Install Zookeeper packages automatically
-```sh
-sudo apt-get update
-sudo apt-get install zookeeper zookeeperd
-```
 
 
-* In case your locale is not set properly:
-```sh
-LANGUAGE = (unset),
-LC_ALL = (unset)
-```
-Then
-```sh
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-```
-
-
-* In case you meet
-```sh
-adduser: Warning: The home directory `/var/lib/zookeeper' does not belong to the user you are currently creating.
-update-alternatives: using /etc/zookeeper/conf_example to provide /etc/zookeeper/conf (zookeeper-conf) in auto mode
-```
-Then
-```sh
-sudo chown -R dawkiny:hadoop /etc/zookeeper
-sudo chown -R dawkiny:hadoop /var/lib/zookeeper
-
-sudo mkdir /usr/local/hadoop_eco/zookeeper
-sudo chown -R [username]:hadoop /usr/local/hadoop_eco/zookeeper
-mv -r /etc/zookeeper /usr/local/hadoop_eco/zookeeper/
-```
-
-
-### Zookeeper Configuration
-```sh
-vi /etc/zookeeper/conf/zoo.cfg
-```
-
-```sh
-# specify all zookeeper servers
-# The fist port is used by followers to connect to the leader
-# The second one is used for leader election
-server.1=hd0m1:2888:3888
-server.2=hd0m2:2888:3888
-server.3=hd0s1:2888:3888
-server.4=hd0s2:2888:3888
-server.5=hd0s3:2888:3888
-server.6=hd0s4:2888:3888
-autopurge.snapRetainCount=10
-autopurge.purgeInterval=12
-```
-
-```sh
-vi ~/.bashrc
-```
-
-```sh
-# Zookeeper
-export ZOOKEEPER_HOME=/zookeeper
-export ZOOKEEPER_PREFIX=$ZOOKEEPER_HOME
-export ZOO_LOG_DIR=/usr/local/hadoop_log/zookeeper/logs
-PATH=$ZOOKEEPER_HOME/bin:$PATH
-```
-
-
-
-
----
 ## Install Zookeeper packages manually
 
 ### Standby to Each Server
@@ -227,3 +159,73 @@ On Each Server:
 ```sh
 zkCleanup.sh
 ```
+
+
+
+---
+## Install Zookeeper packages automatically
+```sh
+sudo apt-get update
+sudo apt-get install zookeeper zookeeperd
+```
+
+
+* In case your locale is not set properly:
+```sh
+LANGUAGE = (unset),
+LC_ALL = (unset)
+```
+Then
+```sh
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+```
+
+
+* In case you meet
+```sh
+adduser: Warning: The home directory `/var/lib/zookeeper' does not belong to the user you are currently creating.
+update-alternatives: using /etc/zookeeper/conf_example to provide /etc/zookeeper/conf (zookeeper-conf) in auto mode
+```
+Then
+```sh
+sudo chown -R dawkiny:hadoop /etc/zookeeper
+sudo chown -R dawkiny:hadoop /var/lib/zookeeper
+
+sudo mkdir /usr/local/hadoop_eco/zookeeper
+sudo chown -R [username]:hadoop /usr/local/hadoop_eco/zookeeper
+mv -r /etc/zookeeper /usr/local/hadoop_eco/zookeeper/
+```
+
+
+### Zookeeper Configuration
+```sh
+vi /etc/zookeeper/conf/zoo.cfg
+```
+
+```sh
+# specify all zookeeper servers
+# The fist port is used by followers to connect to the leader
+# The second one is used for leader election
+server.1=hd0m1:2888:3888
+server.2=hd0m2:2888:3888
+server.3=hd0s1:2888:3888
+server.4=hd0s2:2888:3888
+server.5=hd0s3:2888:3888
+server.6=hd0s4:2888:3888
+autopurge.snapRetainCount=10
+autopurge.purgeInterval=12
+```
+
+```sh
+vi ~/.bashrc
+```
+
+```sh
+# Zookeeper
+export ZOOKEEPER_HOME=/zookeeper
+export ZOOKEEPER_PREFIX=$ZOOKEEPER_HOME
+export ZOO_LOG_DIR=/usr/local/hadoop_log/zookeeper/logs
+PATH=$ZOOKEEPER_HOME/bin:$PATH
+```
+
