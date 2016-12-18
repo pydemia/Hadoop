@@ -62,7 +62,7 @@ vi ~/.bashrc
 # Zookeeper
 export ZOOKEEPER_HOME=/zookeeper
 export ZOOKEEPER_PREFIX=$ZOOKEEPER_HOME
-export ZOO_LOG_DIR=$ZOOKEEPER_HOME/logs
+export ZOO_LOG_DIR=/usr/local/hadoop_log/zookeeper/logs
 PATH=$ZOOKEEPER_HOME/bin:$PATH
 ```
 
@@ -147,8 +147,23 @@ scp -r /usr/local/hadoop_eco [username]@hd0s4:/usr/local
 ```
 ## Create ```myid``` file to Each Server
 
+On Master:
 ```sh
-vi /usr/local/hadoop_eco/zookeeper/data/myid
+cd /usr/local/hadoop_var
+mkdir zookeeper
+scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0m2:/usr/local/hadoop_var
+scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s1:/usr/local/hadoop_var
+scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s2:/usr/local/hadoop_var
+scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s3:/usr/local/hadoop_var
+scp -r /usr/local/hadoop_var/zookeeper dawkiny@hd0s4:/usr/local/hadoop_var
+
+echo 1 > myid
+ssh dawkiny@hd0m2 "echo 2 > /usr/local/hadoop_var/zookeeper/myid"
+ssh dawkiny@hd0s1 "echo 3 > /usr/local/hadoop_var/zookeeper/myid"
+ssh dawkiny@hd0s2 "echo 4 > /usr/local/hadoop_var/zookeeper/myid"
+ssh dawkiny@hd0s3 "echo 5 > /usr/local/hadoop_var/zookeeper/myid"
+ssh dawkiny@hd0s4 "echo 6 > /usr/local/hadoop_var/zookeeper/myid"
+
 
 1     # It refers to your zookeeper server numbers.
 ```
@@ -162,25 +177,34 @@ vi ~/.bashrc
 
 ```sh
 # Zookeeper
-export TOMCAT_HOME=/usr/local/hadoop_eco/tomcat
-export MAVEN_HOME=/usr/local/hadoop_eco/maven
 export ZOOKEEPER_HOME=/usr/local/hadoop_eco/zookeeper
 export ZOOKEEPER_PREFIX=$ZOOKEEPER_HOME
-export ZOO_LOG_DIR=$ZOOKEEPER_HOME/logs
+export ZOO_LOG_DIR=/usr/local/hadoop_log/zookeeper/logs
 export PATH=$PATH:$ZOOKEEPER_HOME/bin
 ```
 
 ```sh
-scp -r ~/.bashrc [username]@hd0m2:~/
-scp -r ~/.bashrc [username]@hd0s1:~/
-scp -r ~/.bashrc [username]@hd0s1:~/
-scp -r ~/.bashrc [username]@hd0s2:~/
-scp -r ~/.bashrc [username]@hd0s3:~/
-scp -r ~/.bashrc [username]@hd0s4:~/
-```
+scp -r ~/.bashrc dawkiny@hd0m2:~/
+scp -r ~/.bashrc dawkiny@hd0s1:~/
+scp -r ~/.bashrc dawkiny@hd0s1:~/
+scp -r ~/.bashrc dawkiny@hd0s2:~/
+scp -r ~/.bashrc dawkiny@hd0s3:~/
+scp -r ~/.bashrc dawkiny@hd0s4:~/
 
-```sh
-source ~/.bashrc     # re-run .bashrc on Each Server
+# re-run .bashrc on Each Server
+source ~/.bashrc
+ssh dawkiny@hd0m2 "source ~/.bashrc"
+ssh dawkiny@hd0s1 "source ~/.bashrc"
+ssh dawkiny@hd0s2 "source ~/.bashrc"
+ssh dawkiny@hd0s3 "source ~/.bashrc"
+ssh dawkiny@hd0s4 "source ~/.bashrc"
+
+zkServer.sh start
+ssh dawkiny@hd0m2 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start"    
+ssh dawkiny@hd0s1 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+ssh dawkiny@hd0s2 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+ssh dawkiny@hd0s3 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+ssh dawkiny@hd0s4 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
 zkServer.sh stop
 zkServer.sh start
 jps                  # QuorumPeerMain : Zookeeper daemon
