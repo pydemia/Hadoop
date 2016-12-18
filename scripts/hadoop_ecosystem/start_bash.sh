@@ -14,6 +14,7 @@ start-yarn.sh
 mr-jobhistory-daemon.sh start historyserver
 ```
 
+
 # Zookeeper
 ```sh
 zkServer.sh start
