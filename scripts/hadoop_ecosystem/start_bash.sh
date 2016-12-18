@@ -3,11 +3,11 @@
 
 # Zookeeper
 zkServer.sh start
-ssh dawkiny@hd0m2 <(zkServer.sh start)
-ssh dawkiny@hd0s1 <(zkServer.sh start)
-ssh dawkiny@hd0s2 <(zkServer.sh start)
-ssh dawkiny@hd0s3 <(zkServer.sh start)
-ssh dawkiny@hd0s4 <(zkServer.sh start)
+ssh dawkiny@hd0m2 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start"    
+ssh dawkiny@hd0s1 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+ssh dawkiny@hd0s2 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+ssh dawkiny@hd0s3 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+ssh dawkiny@hd0s4 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
 
 # Kafka
 kafka-server-start.sh server.properties
