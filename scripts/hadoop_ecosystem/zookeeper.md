@@ -75,7 +75,7 @@ PATH=$ZOOKEEPER_HOME/bin:$PATH
 Create ```hadoop_eco``` folder on Each Server to use it as a path of fully-covered hadoop ecosystem
 ```sh
 sudo mkdir /usr/local/hadoop_eco
-
+```
 
 * In case your locale is not set properly:
 ```sh
