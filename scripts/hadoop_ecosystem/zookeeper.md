@@ -77,6 +77,8 @@ PATH=$ZOOKEEPER_HOME/bin:$PATH
 Create ```hadoop_eco``` folder on Each Server to use it as a path of fully-covered hadoop ecosystem
 ```sh
 sudo mkdir /usr/local/hadoop_eco
+sudo chown -R dawkiny:hadoop /usr/local/hadoop_eco
+sudo chown -R [username]:hadoop /usr/local/hadoop_eco
 ```
 
 * In case your locale is not set properly:
@@ -170,16 +172,17 @@ export PATH=$PATH:$ZOOKEEPER_HOME/bin
 ```
 
 ```sh
-scp -r ~/.bashrc dawkiny@hd0m2:~/
-scp -r ~/.bashrc dawkiny@hd0s1:~/
-scp -r ~/.bashrc dawkiny@hd0s1:~/
-scp -r ~/.bashrc dawkiny@hd0s2:~/
-scp -r ~/.bashrc dawkiny@hd0s3:~/
-scp -r ~/.bashrc dawkiny@hd0s4:~/
+scp -r ~/.bashrc [username]@hd0m2:~/
+scp -r ~/.bashrc [username]@hd0s1:~/
+scp -r ~/.bashrc [username]@hd0s1:~/
+scp -r ~/.bashrc [username]@hd0s2:~/
+scp -r ~/.bashrc [username]@hd0s3:~/
+scp -r ~/.bashrc [username]@hd0s4:~/
 ```
 
 ```sh
 source ~/.bashrc     # re-run .bashrc on Each Server
+zkServer.sh stop
 zkServer.sh start
 jps                  # QuorumPeerMain : Zookeeper daemon
 ```
