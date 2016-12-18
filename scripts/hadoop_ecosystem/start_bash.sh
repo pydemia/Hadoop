@@ -25,6 +25,11 @@ ssh dawkiny@hd0s3 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start"
 ssh dawkiny@hd0s4 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
 ```
 
+# HBase
+```sh
+start-hbase.sh
+```
+
 # Kafka
 kafka-server-start.sh server.properties
 ssh dawkiny@hd0m2 <(kafka-server-start.sh server.properties)
