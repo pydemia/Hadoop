@@ -44,10 +44,12 @@ vi /etc/zookeeper/conf/zoo.cfg
 # specify all zookeeper servers
 # The fist port is used by followers to connect to the leader
 # The second one is used for leader election
-server.1=hd0s1:2888:3888
-server.2=hd0s2:2888:3888
-server.3=hd0s3:2888:3888
-server.4=hd0s4:2888:3888
+server.1=hd0m1:2888:3888
+server.2=hd0m2:2888:3888
+server.3=hd0s1:2888:3888
+server.4=hd0s2:2888:3888
+server.5=hd0s3:2888:3888
+server.6=hd0s4:2888:3888
 autopurge.snapRetainCount=10
 autopurge.purgeInterval=12
 ```
@@ -124,6 +126,9 @@ dataDir=[your dataDir path]
 server.1=hd0m1:2888:3888
 server.2=hd0m2:2888:3888
 server.3=hd0s1:2888:3888
+server.4=hd0s2:2888:3888
+server.5=hd0s3:2888:3888
+server.6=hd0s4:2888:3888
 autopurge.snapRetainCount=10
 autopurge.purgeInterval=12
 ```
@@ -134,6 +139,9 @@ autopurge.purgeInterval=12
 ```sh 
 scp -r /usr/local/hadoop_eco [username]@hd0m2:/usr/local
 scp -r /usr/local/hadoop_eco [username]@hd0s1:/usr/local
+scp -r /usr/local/hadoop_eco [username]@hd0s2:/usr/local
+scp -r /usr/local/hadoop_eco [username]@hd0s3:/usr/local
+scp -r /usr/local/hadoop_eco [username]@hd0s4:/usr/local
 ```
 
 ### Create ```myid``` file to Each Server
@@ -164,6 +172,10 @@ export PATH=$PATH:$ZOOKEEPER_HOME/bin
 ```sh
 scp -r ~/.bashrc dawkiny@hd0m2:~/
 scp -r ~/.bashrc dawkiny@hd0s1:~/
+scp -r ~/.bashrc dawkiny@hd0s1:~/
+scp -r ~/.bashrc dawkiny@hd0s2:~/
+scp -r ~/.bashrc dawkiny@hd0s3:~/
+scp -r ~/.bashrc dawkiny@hd0s4:~/
 ```
 
 ```sh
