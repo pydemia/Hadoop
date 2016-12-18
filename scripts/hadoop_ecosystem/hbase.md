@@ -75,7 +75,7 @@ IF ```ZOOKEEPER``` is not installed:
 ```sh
 export HBASE_PID_DIR=/usr/local/hadoop_eco/hbase/pid/pids
 export HBASE_MANAGES_ZK=false
-export JAVA_HOME=$JAVA_HOME
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 ```
 
 ## Configure```regionservers```
@@ -108,3 +108,12 @@ yes
 jps
 hbase shell
 ```
+
+## Access via WEB
+
+* master : http://192.168.56.12:16010  
+* slave0 : http://192.168.56.11:16030  
+* slave1 : http://192.168.56.21:16030  
+* slave2 : http://192.168.56.22:16030  
+* slave3 : http://192.168.56.23:16030  
+* slave4 : http://192.168.56.24:16030  
