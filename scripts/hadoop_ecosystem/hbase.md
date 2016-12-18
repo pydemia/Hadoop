@@ -15,6 +15,7 @@ ln -s hbase-1.2.4/ hbase
 
 ## ```.bashrc```
 ```sh
+# Hbase
 export HBASE_HOME=/usr/local/hadoop_eco/hbase
 export PATH=$PATH:$HBASE_HOME
 export PATH=$PATH:$HBASE_HOME/bin
@@ -23,13 +24,13 @@ export PATH=$PATH:$HBASE_HOME/bin
 ## ```HBase``` Configuration
 
 ```sh
-cd /usr/local/hadoop_eco/hbase
-mkdir data
+mkdir -p /usr/local/hadoop_dat/hbase/data
 ```
 
 ## Configure ```hbase-site.xml```
 
 ```sh
+source ~/.bashrc
 vi $HBASE_HOME/conf/hbase-site.xml 
 ```
 
@@ -38,27 +39,38 @@ vi $HBASE_HOME/conf/hbase-site.xml
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
         <property>
-                <name>hbase.rootdir</name
+                <name>hbase.rootdir</name>
                 <value>hdfs://hd0m2:9000/hbase</value>
+                <description>The directory shared by RegionServers.
+                </description>
         </property>
         <property>
-                <name>hbase.master</name
+                <name>hbase.master</name>
                 <value>hd0m2:6000</value>
         </property>
         <property>
-                <name>hbase.zookeeper.quorum</name
-                <value>hd0m2,hd0s1,hd0s2,hd0s3,hd0s4</value>
+                <name>hbase.zookeeper.quorum</name>
+                <value>hd0m1,hd0m2,hd0s1,hd0s2,hd0s3,hd0s4</value>
+                <description>The directory shared by RegionServers.
+                </description>
         </property>
         <property>
-                <name>hbase.zookeeper.property.dataDir</name
-                <value>file:///usr/local/hadoop_eco/hbase/data</value>
+                <name>hbase.zookeeper.property.dataDir</name>
+                <value>file:///usr/local/hadoop_dat/hbase/data</value>
+                <description>Property from ZooKeeper's config zoo.cfg.
+                The directory where the snapshot is stored.
+                </description>
         </property>
         <property>
-                <name>hbase.cluster.distributed</name
+                <name>hbase.cluster.distributed</name>
                 <value>true</value>
+                <description>The mode the cluster will be in. Possible values are
+                false: standalone and pseudo-distributed setups with managed Zookeeper
+                true: fully-distributed with unmanaged Zookeeper Quorum (see hbase-env.sh)
+                </description>
         </property>
         <property>
-                <name>dfs.datanode.max.xcievers</name
+                <name>dfs.datanode.max.xcievers</name>
                 <value>4096</value>
         </property>
 </configuration>
@@ -85,11 +97,15 @@ export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
 vi $HBASE_HOME/conf/regionservers
 ```
 ```sh
+hd0m1
 hd0s1
 hd0s2
 hd0s3
 hd0s4
 ```
+
+
+
 
 ## Start ```HBase```
 
