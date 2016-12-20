@@ -21,7 +21,6 @@
 * [Slider](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/slider.md)     
 * [Oozie](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/oozie.md)    
 * [Avro](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/avro.md)   
-
 * [Pig](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/pig.md)  
 * [Hive](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive.md)   
 * [Flume](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/flume.md)   
