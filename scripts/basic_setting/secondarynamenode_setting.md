@@ -1,3 +1,6 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
 # Hadoop Setting - 3.SecondaryNameNode
 
 
@@ -34,3 +37,7 @@ sudo mkdir -p /usr/local/hadoop_work/hdfs/yarn/log
 sudo chown -R [user]:hadoop /usr/local/hadoop
 sudo chown -R [user]:hadoop /usr/local/hadoop_work
 ```
+
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
