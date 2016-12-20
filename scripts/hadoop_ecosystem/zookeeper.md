@@ -1,3 +1,6 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
 # Set up Zookeeper
 
 
@@ -229,3 +232,5 @@ export ZOO_LOG_DIR=/usr/local/hadoop_log/zookeeper/logs
 PATH=$ZOOKEEPER_HOME/bin:$PATH
 ```
 
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
