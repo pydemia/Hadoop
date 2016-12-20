@@ -1,3 +1,6 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
 # Hadoop Setting - 0.VM Setting
 
 ### Global Network Setting  
@@ -12,3 +15,6 @@
 * Adapter 1 ```NAS```  
 * Adapter 2 ```Host-only Adapter```  
 
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
