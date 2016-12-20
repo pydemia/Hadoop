@@ -1,3 +1,6 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
 # Set up Ambari
 
 ```sh
@@ -74,3 +77,6 @@ sudo ambari-server start
 ```
 
 Default ```username``` and ```password``` : admin / admin
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
