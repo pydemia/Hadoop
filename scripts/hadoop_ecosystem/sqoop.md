@@ -244,3 +244,9 @@ sqoop:000>
   
 ---
 # Use ```Sqoop```
+
+## RDBMS to Hadoop
+
+```sh
+
+```
