@@ -1,3 +1,6 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
 # Set up ```HBase```
 
 ## Download & Install ```HBase```
@@ -221,3 +224,7 @@ stop-hbase.sh
 ```
 
 In Case ```master.pid: No such file or directory```, ```start-hbase.sh``` again.
+
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
