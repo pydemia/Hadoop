@@ -139,7 +139,17 @@ cd /usr/local/hadoop_eco/sqoop/conf
 vi sqoop.properties 
 ```
 ```sh
+org.apache.sqoop.log4j.appender.file.File=/usr/local/hadoop_log/sqoop/sqoop.log
+# Default: conf/@LOGDIR@/sqoop.log
+
+org.apache.sqoop.log4j.appender.audit.File=/usr/local/hadoop_log/sqoop/audit.log
+# Default: conf/@LOGDIR@/audit.log
+
+org.apache.sqoop.repository.sysprop.derby.stream.error.file=/usr/local/hadoop_log/sqoop/derbyrepo.log
+# Default: conf/@LOGDIR@/derbyrepo.log
+
 org.apache.sqoop.submission.engine.mapreduce.configuration.directory=/usr/local/hadoop/etc/hadoop/
+# Default: /etc/hadoop/lib/
 ```
 Default or very little tweaking should be **_sufficient_** in most common cases.
 
