@@ -14,7 +14,9 @@ do
 
         ssh dawkiny@$i "source ~/.bashrc"
 
-
+        # Push Haddop Ecosystem Folder
+        scp -r /usr/local/hadoop dawkiny@$i:/usr/local/
+        
         # Push Haddop Ecosystem Folder
         scp -r /usr/local/hadoop_eco dawkiny@$i:/usr/local/
 
