@@ -1,3 +1,7 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
+
 # Hadoop Setting - 4.Check HDFS Status
 
 
@@ -96,3 +100,6 @@ http://192.168.56.11:8088/
 http://192.168.56.11:19888/
 
 
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
