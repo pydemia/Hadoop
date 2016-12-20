@@ -1,3 +1,7 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
+
 # Hadoop Setting - 1.NameNode
 
 ## SU Password
@@ -359,3 +363,6 @@ cd $HADOOP_HOME/lib/native
 sudo mv * ../
 ```
 
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
