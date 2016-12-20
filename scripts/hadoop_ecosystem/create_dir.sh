@@ -6,6 +6,7 @@
 
 ## Create Directory
 
+sudo mkdir /usr/local/hadoop
 sudo mkdir /usr/local/hadoop_eco
 sudo mkdir /usr/local/hadoop_dat
 sudo mkdir /usr/local/hadoop_log
@@ -13,6 +14,7 @@ sudo mkdir /usr/local/hadoop_var
 
 # Change Permission
 
+sudo chown -R dawkiny:hadoop /usr/local/hadoop
 sudo chown -R dawkiny:hadoop /usr/local/hadoop_eco
 sudo chown -R dawkiny:hadoop /usr/local/hadoop_dat
 sudo chown -R dawkiny:hadoop /usr/local/hadoop_log
