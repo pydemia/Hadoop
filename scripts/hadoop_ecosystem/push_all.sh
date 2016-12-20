@@ -12,7 +12,7 @@ do
 
         ## Re-run .bashrc
 
-        ssh dawkiny@hd0m2 "source ~/.bashrc"
+        ssh dawkiny@$i "source ~/.bashrc"
 
 
         # Push Haddop Ecosystem Folder
