@@ -54,7 +54,7 @@ In case ```failed to create symbolic link: File exists```, just ignore it and ke
 cd /usr/local/hadoop/etc/hadoop
 vi core-site.xml
 ```
-```sh
+```xml
 <configuration>
         <property>
                 <name>fs.defaultFS</name>
