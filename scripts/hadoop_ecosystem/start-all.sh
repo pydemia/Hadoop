@@ -1,35 +1,46 @@
 #--------------Start all ----------------#
 
+
+##########################################
+# NameNode
+##########################################
+
 # HDFS
 start-dfs.sh
-
 
 # Yarn
 start-yarn.sh
 
-
 # MR History Server
 mr-jobhistory-daemon.sh start historyserver
 
-
-
 # Zookeeper
 zkServer.sh start
-ssh dawkiny@hd0m2 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start"    
-ssh dawkiny@hd0s1 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
-ssh dawkiny@hd0s2 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
-ssh dawkiny@hd0s3 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
-ssh dawkiny@hd0s4 "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
-
 
 # HBase
 start-hbase.sh
 
+# Sqoop
+sqoop2-server start
 
 # Kafka
 kafka-server-start.sh server.properties
-ssh dawkiny@hd0m2 <(kafka-server-start.sh server.properties)
-ssh dawkiny@hd0s1 <(kafka-server-start.sh server.properties)
-ssh dawkiny@hd0s2 <(kafka-server-start.sh server.properties)
-ssh dawkiny@hd0s3 <(kafka-server-start.sh server.properties)
-ssh dawkiny@hd0s4 <(kafka-server-start.sh server.properties)
+
+
+
+##########################################
+# DataNode
+##########################################
+
+array=(hd0m2 hd0s1 hd0s2 hd0s3 hd0s4)
+
+for i in "${array[@]}"
+
+do
+        # Zookeeper
+        ssh dawkiny@$i "/usr/local/hadoop_eco/zookeeper/bin/zkServer.sh start" 
+
+        # Kafka
+        ssh dawkiny@$i "kafka-server-start.sh server.properties"
+
+done
