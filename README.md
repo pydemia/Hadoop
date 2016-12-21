@@ -16,14 +16,14 @@
 * [Hbase](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hbase.md)  
 * [Sqoop](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/sqoop.md)  
 * [Kafka](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/kafka.md)  
-
+* [Pig](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/pig.md)  
+* [Tez](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez.md)  
 ---
 
-* [Tez](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez.md)  
+
 * [Slider](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/slider.md)  
 * [Oozie](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/oozie.md)  
 * [Avro](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/avro.md)  
-* [Pig](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/pig.md)  
 * [Hive](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive.md)  
 * [Flume](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/flume.md)  
 * [Storm](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/storm.md)  
