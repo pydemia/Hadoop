@@ -33,7 +33,7 @@ export LC_ALL=en_US.UTF-8
 cd /usr/local/hadoop_eco
 wget http://apache.tt.co.kr/zookeeper/stable/zookeeper-3.4.9.tar.gz  # Check first http://apache.tt.co.kr/zookeeper/stable/
 tar zxvf zookeeper-3.4.9.tar.gz
-mv zookeeper-3.4.9/ zookeeper
+ln -s zookeeper-3.4.9/ zookeeper
 ```
 
 ### Zookeeper Configuration
