@@ -89,6 +89,10 @@ vi conf/tez-site.xml
        <name>tez.lib.uris</name>
        <value>${fs.defaultFS}/apps/tez/tez-0.7.0-SNAPSHOT.tar.gz</value>
     </property>
+    <property>
+        <name>tez.use.cluster.hadoop-libs</name>
+        <value>true</value>
+    </property>
 </configuration>
 ```
 [```tez-site.xml``` example](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
