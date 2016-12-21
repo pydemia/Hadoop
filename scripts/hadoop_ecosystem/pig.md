@@ -1,3 +1,7 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
+
+
+
 # Set up ```Pig```
 
 ## Download ```Pig```
@@ -57,3 +61,5 @@ pig -x mapreduce
 ```
 
 
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
