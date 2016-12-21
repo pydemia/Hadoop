@@ -25,7 +25,7 @@ export PIG_CLASSPATH=$HADOOP_CLASSPATH
 source ~/.bashrc
 ```
 
-## 
+## Check Version
 
 ```sh
 pig -version
