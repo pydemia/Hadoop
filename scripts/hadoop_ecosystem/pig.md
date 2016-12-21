@@ -16,6 +16,7 @@ ln -s pig-0.16.0 pig
 vi ~/.bashrc
 ```
 ```sh
+# Pig
 export PIG_HOME=/usr/local/hadoop_eco/pig
 export PATH=$PATH:$PIG_HOME/bin
 export PIG_CLASSPATH=$HADOOP_CLASSPATH
@@ -34,4 +35,25 @@ Apache Pig version 0.16.0 (r1746530)
 compiled Jun 01 2016, 23:10:49
 
 ```
+
+## Run ```Pig```
+
+```sh
+pig
+```
+
+### Local Mode:
+```sh
+pig -x local
+```
+
+### MapReduce Mode:
+```sh
+pig
+```
+or 
+```sh
+pig -x mapreduce
+```
+
 
