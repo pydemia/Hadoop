@@ -9,7 +9,7 @@
 cd /usr/local/hadoop_eco
 wget http://archive.apache.org/dist/sqoop/1.99.7/sqoop-1.99.7-bin-hadoop200.tar.gz
 tar -xzf sqoop-1.99.7-bin-hadoop200.tar.gz
-mv sqoop-1.99.7-bin-hadoop200 sqoop
+ln -s sqoop-1.99.7-bin-hadoop200 sqoop
 ```
 
 ## Setting to use ```Sqoop```
