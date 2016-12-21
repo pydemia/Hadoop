@@ -95,7 +95,7 @@ vi conf/tez-site.xml
     </property>
 </configuration>
 ```
-[```tez-site.xml``` example](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
+[[```tez-site.xml``` example]](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
 
 ## Configure ```hdfs-site.xml```
 ```
@@ -133,5 +133,4 @@ cd
         <value>-Djava.security.egd=file:/dev/../dev/urandom</value>
     </property>
 </configuration>
-mapreduce.framework.name” property from its default value of “yarn” to “yarn-tez”
 ```
