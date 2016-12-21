@@ -9,7 +9,8 @@ You might have already installed ```JDK6``` or later.
 Install ```Maven3``` or later.
 
 ```sh
-sudo apt-get install maven
+wget https://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
+wget https://archive.apache.org/dist/maven/maven-3/3.1.0/binaries/apache-maven-3.1.0-bin.tar.gz
 ```
 
 
@@ -53,7 +54,15 @@ libprotoc 2.5.0
 ## Download & Install ```Tez```
 ```sh
 cd /usr/local/hadoop_eco
-git clone https://github.com/apache/tez
+wget http://apache.mirror.cdnetworks.com/tez/0.8.4/apache-tez-0.8.4-bin.tar.gz
+tar -zxf apache-tez-0.8.4-bin.tar.gz 
+ln -s apache-tez-0.8.4-bin tez
+```
+```sh
+cd /usr/local/hadoop_eco
+wget http://apache.mirror.cdnetworks.com/tez/0.8.4/apache-tez-0.8.4-src.tar.gz
+tar -zxf apache-tez-0.8.4-src.tar.gz 
+ln -s apache-tez-0.8.4-src tez
 ```
 
 ### Check ```Hadoop``` version
@@ -75,6 +84,9 @@ vi pom.xml
 ```
 ```xml
     <hadoop.version>2.7.2</hadoop.version>
+    <jetty.version>6.1.26</jetty.version>
+    <pig.version>0.16.0</pig.version>
+
 ```
 
 
