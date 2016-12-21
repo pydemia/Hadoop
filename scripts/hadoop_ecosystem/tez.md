@@ -3,12 +3,6 @@
 
 # Set up ```Tez```
 
-## Check ```Hadoop``` version
-Check & change ```Hadoop``` version in the top-level ```pom.xml``` to match the version of the ```Hadoop``` branch being used.
-```sh
-hadoop version
-```
-
 ## Install Requirements
 You might have already installed ```JDK6``` or later.
 
@@ -60,7 +54,32 @@ libprotoc 2.5.0
 ```sh
 cd /usr/local/hadoop_eco
 git clone https://github.com/apache/tez
+```
+
+### Check ```Hadoop``` version
+Check & change ```Hadoop``` version in the top-level ```pom.xml``` to match the version of the ```Hadoop``` branch being used.
+```sh
+hadoop version
+--------------------
+Hadoop 2.7.2
+Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r b165c4fe8a74265c792ce23f546c64604acf0e41
+Compiled by jenkins on 2016-01-26T00:08Z
+Compiled with protoc 2.5.0
+From source with checksum d0fda26633fa762bff87ec759ebe689c
+This command was run using /usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.2.jar
+```
+
+```sh
 cd tez
+vi pom.xml
+```
+```xml
+    <hadoop.version>2.7.2</hadoop.version>
+```
+
+
+### Install ```Tez```
+```sh
 mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true
 ```
 
