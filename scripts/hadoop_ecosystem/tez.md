@@ -1,3 +1,4 @@
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
 
 
 
@@ -10,25 +11,6 @@ Install ```Maven3``` or later.
 
 ```sh
 wget https://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
-wget https://archive.apache.org/dist/maven/maven-3/3.1.0/binaries/apache-maven-3.1.0-bin.tar.gz
-```
-
-
-Just in case, install below:
-
-Install ```nodejs```
-```sh
-sudo apt-get install nodejs
-```
-
-Install ```npm```
-```sh
-sudo apt-get install npm
-```
-
-Install ```build-essential```
-```sh
-sudo apt-get install build-essential
 ```
 
 Install ```protobuf 2.5```(**_2.5 version is MANDATORY_**)
@@ -52,12 +34,7 @@ libprotoc 2.5.0
 
 
 ## Download & Install ```Tez```
-```sh
-cd /usr/local/hadoop_eco
-wget http://apache.mirror.cdnetworks.com/tez/0.8.4/apache-tez-0.8.4-bin.tar.gz
-tar -zxf apache-tez-0.8.4-bin.tar.gz 
-ln -s apache-tez-0.8.4-bin tez
-```
+
 ```sh
 cd /usr/local/hadoop_eco
 wget http://apache.mirror.cdnetworks.com/tez/0.8.4/apache-tez-0.8.4-src.tar.gz
@@ -65,7 +42,7 @@ tar -zxf apache-tez-0.8.4-src.tar.gz
 ln -s apache-tez-0.8.4-src tez
 ```
 
-### Check ```Hadoop``` version
+### Configure ```pom.xml```
 Check & change ```Hadoop``` version in the top-level ```pom.xml``` to match the version of the ```Hadoop``` branch being used.
 ```sh
 hadoop version
@@ -102,15 +79,17 @@ mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true
 vi ~/.bashrc
 ```
 ```sh
-export TEZ_JARS=~/tez/tez-dist/target/tez-0.7.0-SNAPSHOT
+# Tez
+export TEZ_HOME=/usr/local/hadoop_eco/tez
+export TEZ_JARS=$TEZ_HOME/tez-dist/target/tez-0.8.4-SNAPSHOT
 export TEZ_CONF_DIR=$TEZ_JARS/conf
-export HADOOP_CLASSPATH=$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/lib/*:$HADOOP_CLASSPATH
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/lib/*
 ```
 
 
 ## Configure ```tez-site.xml```
 ```sh
-cd tez-dist/target/tez-0.7.0-SNAPSHOT
+cd tez-dist/target/tez-0.8.4-SNAPSHOT
 mkdir conf
 vi conf/tez-site.xml
 ```
@@ -145,25 +124,8 @@ cd
         If running existing MapReduce jobs on Tez, "yarn-tez". or just "yarn"
         </description>
     </property>
-    <property>
-        <name>mapred.job.tracker</name>
-        <value>namenode:9001</value>
-    </property>
-    <property>
-        <name>mapreduce.jobhistory.address</name>
-        <value>NameNode:10020</value>
-    </property>
-    <property>
-        <name>mapreduce.jobhistory.webapp.address</name>
-        <value>NameNode:19888</value>
-    </property>
-    <property>
-        <name>yarn.app.mapreduce.am.staging-dir</name>
-        <value>/user/app</value>
-    </property>
-    <property>
-        <name>mapred.child.java.opts</name>
-        <value>-Djava.security.egd=file:/dev/../dev/urandom</value>
-    </property>
 </configuration>
 ```
+
+
+[← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
