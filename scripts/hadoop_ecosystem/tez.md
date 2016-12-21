@@ -63,7 +63,7 @@ mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true
 ```
 
 
-## Configuration
+## Configure ```~/.bashrc```
 
 ```sh
 vi ~/.bashrc
