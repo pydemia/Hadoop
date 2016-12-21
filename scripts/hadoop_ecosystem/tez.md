@@ -13,7 +13,7 @@ Install ```Maven3``` or later.
 wget https://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
 ```
 
-Install ```protobuf 2.5```(**_2.5 version is MANDATORY_**)
+Install ```protobuf 2.5```  (**_2.5 version is MANDATORY_**)
 
 ```sh
 cd /usr/local/hadoop_eco
@@ -119,7 +119,7 @@ cd
 <configuration>
     <property>
         <name>mapreduce.framework.name</name>
-        <value>yarn</value>
+        <value>yarn-tez</value>
         <description>
         If running existing MapReduce jobs on Tez, "yarn-tez". or just "yarn"
         </description>
