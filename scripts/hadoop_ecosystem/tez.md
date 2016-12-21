@@ -86,32 +86,10 @@ export TEZ_CONF_DIR=$TEZ_JARS/conf
 export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/lib/*
 ```
 
-
-## Configure ```tez-site.xml```
-```sh
-cd tez-dist/target/tez-0.8.4-SNAPSHOT
-mkdir conf
-vi conf/tez-site.xml
+## Configure ```mapred-site.xml```
 ```
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuration>
-    <property>
-       <name>tez.lib.uris</name>
-       <value>${fs.defaultFS}/apps/tez/tez-0.7.0-SNAPSHOT.tar.gz</value>
-    </property>
-    <property>
-        <name>tez.use.cluster.hadoop-libs</name>
-        <value>true</value>
-    </property>
-</configuration>
-```
-[[```tez-site.xml``` example]](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
-
-## Configure ```hdfs-site.xml```
-```
-cd 
+cd /usr/local/hadoop/etc/hadoop
+vi mapred-site.xml
 ```
 ```xml
 <?xml version="1.0"?>
@@ -126,6 +104,37 @@ cd
     </property>
 </configuration>
 ```
+
+## ```tez tarball``` into ```HDFS```
+
+```sh
+cd /usr/local/hadoop_eco/tez
+hdfs dfs -mkdir -p /apps/tez/lib
+hdfs dfs -copyFromLocal tez-dist/target/tez-0.8.4.tar.gz /apps/tez/
+```
+
+
+## Configure ```tez-site.xml```
+```sh
+cd tez-dist/target/tez-0.8.4
+mkdir conf
+vi conf/tez-site.xml
+```
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+       <name>tez.lib.uris</name>
+       <value>${fs.defaultFS}/apps/tez,${fs.defaultFS}/apps/tez/lib</value>
+    </property>
+    <property>
+        <name>tez.use.cluster.hadoop-libs</name>
+        <value>true</value>
+    </property>
+</configuration>
+```
+[[```tez-site.xml``` example]](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
 
 
 [← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
