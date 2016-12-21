@@ -91,6 +91,7 @@ vi conf/tez-site.xml
     </property>
 </configuration>
 ```
+[```tez-site.xml``` example](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
 
 ## Configure ```hdfs-site.xml```
 ```
