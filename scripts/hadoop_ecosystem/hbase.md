@@ -9,11 +9,7 @@
 cd /usr/local/hadoop_eco
 wget http://apache.mirror.cdnetworks.com/hbase/stable/hbase-1.2.4-bin.tar.gz
 tar zxvf hbase-1.2.4-bin.tar.gz
-mv hbase-1.2.4 hbase
-```
-or make a ```link```:
-```sh
-ln -s hbase-1.2.4/ hbase
+ln -s hbase-1.2.4 hbase
 ```
 
 ## ```.bashrc```
