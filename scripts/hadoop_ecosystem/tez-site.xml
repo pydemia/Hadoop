@@ -25,6 +25,10 @@
         <value>${fs.defaultFS}/apps/tez,${fs.defaultFS}/apps/tez/lib</value>
     </property>
     <property>
+        <name>tez.use.cluster.hadoop-libs</name>
+        <value>true</value>
+    </property>
+    <property>
         <name>tez.am.mode.session</name>
         <value>false</value>
     </property>
