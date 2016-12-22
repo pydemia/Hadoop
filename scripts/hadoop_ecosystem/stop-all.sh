@@ -9,7 +9,7 @@
 stop-dfs.sh
 
 # Yarn
-sttop-yarn.sh
+stop-yarn.sh
 
 # MR History Server
 mr-jobhistory-daemon.sh stop historyserver
