@@ -338,15 +338,40 @@ vi yarn-site.xml
 </configuration>
 ```
 
-## Configure ```hadoop-env.sh```
+## Configure ```hadoop-env.sh``` for logs
 ```sh
 cd /usr/local/hadoop/etc/hadoop
 vi hadoop-env.sh
 ```
 ```sh
-export HADOOP_LOG_DIR=${HADOOP_LOG_DIR}/$USER
+export HADOOP_LOG_DIR=/usr/local/hadoop_log/hadoop/logs/$USER
 ```
 
+## Configure ```yarn-env.sh``` or ```~/.bashrc``` for logs
+```sh
+cd /usr/local/hadoop/etc/hadoop
+vi yarn-env.sh
+```
+```sh
+export YARN_LOG_DIR=/usr/local/hadoop_log/yarn/logs
+```
+or
+```sh
+export YARN_LOG_DIR=/usr/local/hadoop_log/yarn/logs
+```
+
+export HADOOP_MAPRED_LOG_DIR=""
+
+
+## Configure ```mapred-env.sh``` for logs
+```sh
+cd /usr/local/hadoop/etc/hadoop
+vi mapred-env.sh
+```
+```sh
+export HADOOP_MAPRED_LOG_DIR=/usr/local/hadoop_log/mapred/logs
+export HADOOP_MAPRED_PID_DIR=/usr/local/hadoop_var/mapred/pid
+```
 
 ## Setup the Master
 
