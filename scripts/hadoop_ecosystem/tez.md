@@ -81,7 +81,7 @@ vi ~/.bashrc
 ```sh
 # Tez
 export TEZ_HOME=/usr/local/hadoop_eco/tez
-export TEZ_JARS=$TEZ_HOME/tez-dist/target/tez-0.8.4-SNAPSHOT
+export TEZ_JARS=$TEZ_HOME/tez-dist/target/tez-0.8.4
 export TEZ_CONF_DIR=$TEZ_JARS/conf
 export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/lib/*
 ```
@@ -130,11 +130,58 @@ vi conf/tez-site.xml
     </property>
     <property>
         <name>tez.use.cluster.hadoop-libs</name>
-        <value>true</value>
+        <value>false</value>
     </property>
 </configuration>
 ```
 [[```tez-site.xml``` example]](https://github.com/dawkiny/Hadoop/edit/master/scripts/hadoop_ecosystem/tez-site.xml)
 
+
+## Extract the tez minimal tarball created in step 2
+```sh
+cd /usr/local/hadoop_eco/tez/tez-dist/target
+tar -zxf tez-0.8.4-minimal.tar.gz -C $TEZ_JARS
+cd tez-0.8.4-minimal
+```
+
+## Configure ```hadoop-env.sh```
+```sh
+cd /usr/local/hadoop/etc/hadoop
+vi hadoop-env.sh
+```
+```sh
+###################
+# Tez Setting
+###################
+export HADOOP_CLIENT_OPTS="-Djava.net.preferIPv4Stack=true $HADOOP_CLIENT_OPTS"
+export TEZ_HOME=/usr/local/hadoop_eco/tez
+export TEZ_JARS=$TEZ_HOME/tez-dist/target/tez-0.8.4
+export TEZ_CONF_DIR=$TEZ_JARS/conf
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/lib/*
+
+```
+
+## Optional: Configure ```hive-env.sh```
+```sh
+vi hive-env.sh
+```
+```sh
+###################
+# Tez Setting
+###################
+export TEZ_HOME=/usr/local/hadoop_eco/tez
+export TEZ_INSTALL_DIR=$TEZ_HOME/tez-dist/target/tez-0.8.4
+export TEZ_JARS=$(echo "$TEZ_INSTALL_DIR"/*.jar | tr ' ' ':'):$(echo "$TEZ_INSTALL_DIR"/lib/*.jar | tr ' ' ':')
+export TEZ_CONF_DIR=$TEZ_JARS/conf
+export HIVE_AUX_JARS_PATH=$TEZ_JARS
+
+```
+
+
+## Run ```tez-examples-0.8.4.jar``` to run MRR Job
+```sh
+cd /usr/local/hadoop_eco/tez/tez-dist/target/tez-0.8.4-minimal
+$HADOOP_HOME/bin/hadoop jar tez-examples-0.8.4.jar orderedwordcount ~/.bashrc ~/bashrc.count
+```
 
 [← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
