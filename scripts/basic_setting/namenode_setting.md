@@ -173,6 +173,7 @@ source ~/.bashrc
 sudo vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
+
 ```
 
 ## Confirm Hadoop is installed
@@ -335,6 +336,15 @@ vi yarn-site.xml
         <value>hdfs://NameNode:8020/var/log/hadoop-yarn/apps</value>
     </property>
 </configuration>
+```
+
+## Configure ```hadoop-env.sh```
+```sh
+cd /usr/local/hadoop/etc/hadoop
+vi hadoop-env.sh
+```
+```sh
+export HADOOP_LOG_DIR=${HADOOP_LOG_DIR}/$USER
 ```
 
 
