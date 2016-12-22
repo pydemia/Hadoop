@@ -97,7 +97,7 @@ vi mapred-site.xml
 <configuration>
     <property>
         <name>mapreduce.framework.name</name>
-        <value>yarn-tez</value>
+        <value>tez</value>
         <description>
         If running existing MapReduce jobs on Tez, "yarn-tez". or just "yarn"
         </description>
@@ -161,6 +161,8 @@ export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/li
 
 ```
 
+
+
 ## Optional: Configure ```hive-env.sh```
 ```sh
 vi hive-env.sh
@@ -176,6 +178,10 @@ export TEZ_CONF_DIR=$TEZ_JARS/conf
 export HIVE_AUX_JARS_PATH=$TEZ_JARS
 
 ```
+
+## Deploy settings to DataNode
+
+Use ```hdfs``` or ```linux```
 
 
 ## Run ```tez-examples-0.8.4.jar``` to run MRR Job
