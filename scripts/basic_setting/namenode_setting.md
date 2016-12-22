@@ -202,7 +202,7 @@ vi core-site.xml
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/data/hadoop/tmp</value>
+        <value>/usr/local/hadoop_dat/tmp</value>
     </property>
     <property>
         <name>io.file.buffer.size</name>
@@ -226,15 +226,15 @@ vi hdfs-site.xml
 <configuration>
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>file:///usr/local/hadoop_work/hdfs/namenode</value>
+        <value>file:///usr/local/hadoop_dat/hdfs/namenode</value>
     </property>
     <property>
         <name>dfs.namenode.checkpoint.dir</name>
-        <value>file:///usr/local/hadoop_work/hdfs/namesecondary</value>
+        <value>file:///usr/local/hadoop_dat/hdfs/namesecondary</value>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>file:///usr/local/hadoop_work/hdfs/datanode</value>
+        <value>file:///usr/local/hadoop_dat/hdfs/datanode</value>
     </property>
     <property>
         <name>dfs.replication</name>
@@ -276,7 +276,7 @@ vi mapred-site.xml
     </property>
     <property>
         <name>yarn.app.mapreduce.am.staging-dir</name>
-        <value>/user/app</value>
+        <value>hdfs://user/app</value>
     </property>
     <property>
         <name>mapred.child.java.opts</name>
@@ -324,11 +324,11 @@ vi yarn-site.xml
     </property>
     <property>
         <name>yarn.nodemanager.local-dirs</name>
-        <value>file:///usr/local/hadoop_work/yarn/local</value>
+        <value>file:///usr/local/hadoop_dat/yarn/local</value>
     </property>
     <property>
         <name>yarn.nodemanager.log-dirs</name>
-        <value>file:///usr/local/hadoop_work/yarn/log</value>
+        <value>file:///usr/local/hadoop_log/yarn/log</value>
     </property>
     <property>
         <name>yarn.nodemanager.remote-app-log-dir</name>
