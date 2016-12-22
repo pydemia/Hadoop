@@ -302,13 +302,22 @@ vi yarn-site.xml
     <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>NameNode</value>
-    </property><property>
-                <name>yarn.resourcemanager.bind-host</name>
-                <value>0.0.0.0</value>
+    </property>
+    <property>
+                <name>yarn.resourcemanager.hostname</name>
+                <value>hd0m1</value>
         </property>
         <property>
-                <name>yarn.nodemanager.bind-host</name>
-                <value>0.0.0.0</value>
+                <name>yarn.resourcemanager.address</name>
+                <value>hd0m1:8032</value>
+        </property>
+        <property>
+                <name>yarn.nodemanager.hostname</name>
+                <value>hd0m1</value>
+        </property>
+        <property>
+                <name>yarn.nodemanager.address</name>
+                <value>hd0m1:0</value>
         </property>
         <property>
                 <name>yarn.nodemanager.webapp.address</name>
