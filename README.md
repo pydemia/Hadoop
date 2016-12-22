@@ -18,6 +18,7 @@
 * [Kafka](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/kafka.md)  
 * [Pig](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/pig.md)  
 * [Tez](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez.md)  
+
 ---
 
 
@@ -29,3 +30,6 @@
 * [Storm](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/storm.md)  
 * [Mahout](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/mahout.md)  
 * [Spark](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/spark.md)  
+
+
+* [Tez UI](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez_ui.md)  
