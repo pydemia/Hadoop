@@ -389,7 +389,7 @@ or
 export YARN_LOG_DIR=/usr/local/hadoop_log/yarn/logs
 ```
 
-export HADOOP_MAPRED_LOG_DIR=""
+
 
 
 ## Configure ```mapred-env.sh``` for logs
