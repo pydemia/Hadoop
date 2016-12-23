@@ -21,8 +21,8 @@
 * [Tez UI](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez_ui.md)  
 ---
 
-* [Oozie](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/oozie.md)  
 * [Hive](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive.md)  
+* [Oozie](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/oozie.md)  
 * [Flume](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/flume.md)  
 * [Storm](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/storm.md)  
 * [Mahout](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/mahout.md)  
