@@ -1,36 +1,4 @@
-# Set up ```Hive``` (On ```secondNameNode```)
-
-## Install ```mysql```
-```sh
-sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu trusty universe'
-sudo apt-get update
-sudo apt install mysql-server-5.6
-```
-
-```sh
-sudo apt-get update
-sudo apt install mariadb-server
-```
-and
-```
-vi /etc/mysql/my.cnf
-```
-
-```sh
-sudo mysqld start
-sudo mysql -uroot
-```
-```sh
-mysqld> create database hive_metastore_db;
-grant all privileges on *.* to 'hive'@'localhost';
-grant all privileges on *.* to 'hive'@'%';
-```
-The following script do the same job in ```./schematool -initSchema -dbType [dbtype]```
-It needs the ```hive-site.xml``` configuration.
-```sh
-mysql -uhive hive_metastore_db < hive-schema-2.1.0.mysql.sql
-```
-
+# Set up ```Hive``` (on ```secondNameNode```)
 
 ## Download & Install ```Hive```
 
@@ -40,17 +8,6 @@ wget http://apache.mirror.cdnetworks.com/hive/hive-2.1.1/apache-hive-2.1.1-bin.t
 tar -zxf apache-hive-2.1.1-bin.tar.gz 
 ln -s apache-hive-2.1.1-bin hive
 ```
-
-## Get ```mysql-connector```
-```sh
-cd /usr/local/hadoop_eco/hive/lib
-wget http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz 
-tar -zxf mysql-connector-java-5.1.35.tar.gz 
-cd mysql-connector-java-5.1.35
-cp mysql-connector-java-5.1.35-bin.jar ../
-
-```
-
 
 ## Configure ```~/.bashrc```
 
@@ -85,21 +42,60 @@ cd /usr/local/hadoop_eco/hive/conf
 cp hive-default.xml.template hive-site.xml
 vi hive-site.xml
 ```
-```sh
+```xml
 <configuration>
   <property>
     <name>hive.exec.scratchdir</name>
-    <value>/tmp/hive/exec_scratch</value>
+    <value>/tmp/hive/exec_scratch/${system:user.name}</value>
     <description>Scratch space for Hive jobs</description>
   </property>
   <property>
+    <name>hive.exec.local.scratchdir</name>
+    <value>/tmp/hive/exec_local_scratch/${system:user.name}</value>
+    <description>Scratch space for Hive jobs</description>
+  </property>
+    <property>
+    <name>hive.scratch.dir.permission</name>
+    <value>733</value>
+    <description>The permission for the user specific scratch directories that get created.</description>
+  </property>
+  <property>
     <name>hive.querylog.location</name>
-    <value>/logs/hive/querylog</value>
+    <value>/logs/hive/querylog/${system:user.name}</value>
     <description>Scratch space for Hive jobs</description>
   </property>
     <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:derby:;databaseName=/usr/local/hadoop_dat/hive/metastore_db;create=true</value>
+    <value>jdbc:mysql://hd0m2:3306/hive_metastore_db?createDatabaseIfNotExsist=true</value>
+    <description>
+      JDBC connect string for a JDBC metastore.
+      To use SSL to encrypt/authenticate the connection, provide database-specific SSL flag in the connection URL.
+      For example, jdbc:postgresql://myhost/db?ssl=true for postgres database.
+    </description>
+  </property>
+    <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>com.mysql.jdbc.Driver</value>
+    <description>Driver class name for a JDBC metastore</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>hive</value>
+    <description>Username to use against metastore database</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>hive</value>
+    <description>password to use against metastore database</description>
+  </property>
+  <property>
+    <name>hive.metastore.ds.connection.url.hook</name>
+    <value/>
+    <description>Name of the hook to use for retrieving the JDO connection URL. If empty, the value in javax.jdo.option.ConnectionURL is used</description>
+  </property>
+    <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql:;databaseName=metastore_db;create=true</value>
     <description>
       JDBC connect string for a JDBC metastore.
       To use SSL to encrypt/authenticate the connection, provide database-specific SSL flag in the connection URL.
