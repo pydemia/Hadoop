@@ -14,6 +14,51 @@ tar -zxf mariadb-10.1.20-linux-x86_64.tar.gz
 ln -s mariadb-10.1.20-linux-x86_64 mariadb
 ```
 
+## Create ```my.cnf``` for ```mariadb```
+```sh
+cd mariadb
+cp support-files/my-innodb-heavy-4G.cnf my.cnf
+```
+
+```sh
+vi my.cnf
+```
+```sh
+[client-server]
+# Uncomment these if you want to use a nonstandard connection to MariaDB
+#socket=/tmp/mysql.sock
+#port=3306
+
+# This will be passed to all MariaDB clients
+[client]
+#password=my_password
+
+# The MariaDB server
+[mysqld]
+# Directory where you want to put your data
+data=/usr/local/mysql/var
+# Directory for the errmsg.sys file in the language you want to use
+language=/usr/local/share/mysql/english
+# Create a file where the InnoDB/XtraDB engine stores it's data
+loose-innodb_data_file_path = ibdata1:1000M
+loose-innodb_file_per_table
+
+# This is the prefix name to be used for all log, error and replication files
+log-basename=mysqld
+
+# Enable logging by default to help find problems
+general-log
+log-slow-queries
+```
+```sh
+./bin/mysqld_safe --defaults-file=~/.my.cnf &
+
+./scripts/mysql_install_db --defaults-file=my.cnf
+cp support-files/mysql.server /etc/init.d/mysql.server
+```
+
+
+
 ```sh
 vi ~/.bashrc
 ```
@@ -24,10 +69,7 @@ export PATH=$PATH:$MARIADB_HOME/bin
 
 ```
 and
-```
-vi /etc/mysql/my.cnf
-vi /etc/mysql/mariadb.conf.d
-```
+
 
 ```sh
 service mysqld start
@@ -42,7 +84,11 @@ grant all privileges on *.* to 'hive'@'hd0m2' IDENTIFIED BY 'hive' WITH GRANT OP
 grant all privileges on *.* to 'hive'@'192.168.56.%' IDENTIFIED BY 'hive' WITH GRANT OPTION;
 ```
 
-
+Optional: ```mariadb``` configuration file
+```
+vi /etc/mysql/my.cnf
+sudo vi /etc/mysql/mariadb.conf.d
+```
 ## Download & Install ```Hive```
 
 ```sh
