@@ -10,25 +10,37 @@ sudo apt install mysql-server-5.6
 ```sh
 sudo apt-get update
 sudo apt install mariadb-server
+wget https://downloads.mariadb.org/f/mariadb-10.1.20/bintar-linux-x86_64/mariadb-10.1.20-linux-x86_64.tar.gz
+tar -zxf mariadb-10.1.20-linux-x86_64.tar.gz
+ln -s mariadb-10.1.20-linux-x86_64 mariadb
+```
+
+```sh
+vi ~/.bashrc
+```
+```sh
+# MariaDB for Hive
+export MARIADB_HOME=/usr/local/hadoop_eco/mariadb
+export PATH=$PATH:$MARIADB_HOME/bin
+
 ```
 and
 ```
 vi /etc/mysql/my.cnf
+vi /etc/mysql/mariadb.conf.d
 ```
 
 ```sh
+service mysqld start
 sudo mysqld start
 sudo mysql -uroot
 ```
 ```sh
 mysqld> create database hive_metastore_db;
-grant all privileges on *.* to 'hive'@'localhost';
-grant all privileges on *.* to 'hive'@'%';
-```
-The following script do the same job in ```./schematool -initSchema -dbType [dbtype]```
-It needs the ```hive-site.xml``` configuration.
-```sh
-mysql -uhive hive_metastore_db < hive-schema-2.1.0.mysql.sql
+grant all privileges on *.* to 'hive'@'localhost' IDENTIFIED BY 'hive' WITH GRANT OPTION;
+grant all privileges on *.* to 'hive'@'%' IDENTIFIED BY 'hive' WITH GRANT OPTION;
+grant all privileges on *.* to 'hive'@'hd0m2' IDENTIFIED BY 'hive' WITH GRANT OPTION;
+grant all privileges on *.* to 'hive'@'192.168.56.%' IDENTIFIED BY 'hive' WITH GRANT OPTION;
 ```
 
 
@@ -85,21 +97,60 @@ cd /usr/local/hadoop_eco/hive/conf
 cp hive-default.xml.template hive-site.xml
 vi hive-site.xml
 ```
-```sh
+```xml
 <configuration>
   <property>
     <name>hive.exec.scratchdir</name>
-    <value>/tmp/hive/exec_scratch</value>
+    <value>/tmp/hive/exec_scratch/${system:user.name}</value>
     <description>Scratch space for Hive jobs</description>
   </property>
   <property>
+    <name>hive.exec.local.scratchdir</name>
+    <value>/tmp/hive/exec_local_scratch/${system:user.name}</value>
+    <description>Scratch space for Hive jobs</description>
+  </property>
+    <property>
+    <name>hive.scratch.dir.permission</name>
+    <value>733</value>
+    <description>The permission for the user specific scratch directories that get created.</description>
+  </property>
+  <property>
     <name>hive.querylog.location</name>
-    <value>/logs/hive/querylog</value>
+    <value>/logs/hive/querylog/${system:user.name}</value>
     <description>Scratch space for Hive jobs</description>
   </property>
     <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:derby:;databaseName=/usr/local/hadoop_dat/hive/metastore_db;create=true</value>
+    <value>jdbc:mysql://hd0m2:3306/hive_metastore_db?createDatabaseIfNotExsist=true</value>
+    <description>
+      JDBC connect string for a JDBC metastore.
+      To use SSL to encrypt/authenticate the connection, provide database-specific SSL flag in the connection URL.
+      For example, jdbc:postgresql://myhost/db?ssl=true for postgres database.
+    </description>
+  </property>
+    <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.mariadb.jdbc.Driver</value>
+    <description>Driver class name for a JDBC metastore</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>hive</value>
+    <description>Username to use against metastore database</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>hive</value>
+    <description>password to use against metastore database</description>
+  </property>
+  <property>
+    <name>hive.metastore.ds.connection.url.hook</name>
+    <value/>
+    <description>Name of the hook to use for retrieving the JDO connection URL. If empty, the value in javax.jdo.option.ConnectionURL is used</description>
+  </property>
+    <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql:;databaseName=metastore_db;create=true</value>
     <description>
       JDBC connect string for a JDBC metastore.
       To use SSL to encrypt/authenticate the connection, provide database-specific SSL flag in the connection URL.
@@ -120,6 +171,13 @@ vi hive-log4j.properties
 ```sh
 property.hive.log.dir = /usr/local/hadoop_log/hive/logs
 
+```
+
+The following script do the same job in ```./schematool -initSchema -dbType [dbtype]```
+It needs the ```hive-site.xml``` configuration.
+```sh
+cd /usr/local/hadoop_eco/hive/scripts/metastore/upgrade/mysql
+mysql -uhive -phive hive_metastore_db < $HIVE_HOME/conf/hive-schema-2.1.0.mysql.sql
 ```
 
 
