@@ -1,15 +1,14 @@
 # Set up ```Hive``` (On ```secondNameNode```)
 
-## Install ```mysql```
-```sh
-sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu trusty universe'
-sudo apt-get update
-sudo apt install mysql-server-5.6
-```
+## Install ```MariaDB```
 
 ```sh
 sudo apt-get update
 sudo apt install mariadb-server
+```
+or
+```sh
+cd /usr/local/hadoop_eco
 wget https://downloads.mariadb.org/f/mariadb-10.1.20/bintar-linux-x86_64/mariadb-10.1.20-linux-x86_64.tar.gz
 tar -zxf mariadb-10.1.20-linux-x86_64.tar.gz
 ln -s mariadb-10.1.20-linux-x86_64 mariadb
