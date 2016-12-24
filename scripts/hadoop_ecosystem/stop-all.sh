@@ -26,6 +26,8 @@ sqoop2-server stop
 # Kafka
 kafka-server-stop.sh
 
+# Hive
+#hive --service hiveserver &
 
 
 ##########################################
