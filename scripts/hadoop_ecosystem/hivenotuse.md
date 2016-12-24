@@ -1,4 +1,4 @@
-# Set up ```Hive``` (on ```secondNameNode```)
+# Set up ```Hive```
 
 ## Download & Install ```Hive```
 
