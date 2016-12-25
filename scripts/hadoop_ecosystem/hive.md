@@ -1,4 +1,4 @@
-# Set up ```Hive``` (on ```secondNameNode```)
+# Set up ```Hive```
 
 ## Download & Install ```Hive```
 
@@ -47,7 +47,7 @@ vi hive-site.xml
 <configuration>
   <property>
     <name>hive.exec.scratchdir</name>
-    <value>/usr/local/hadoop_dat/hive/exec_scratch</value>
+    <value>/tmp/hive/exec_scratch</value>
     <description>Scratch space for Hive jobs</description>
   </property>
   <property>
@@ -98,7 +98,11 @@ vi hive-site.xml
       For example, jdbc:postgresql://myhost/db?ssl=true for postgres database.
     </description>
   </property>
-
+    <property>
+    <name>hive.security.authorization.enabled</name>
+    <value>true</value>
+    <description>enable or disable the Hive client authorization</description>
+  </property>
 </configuration>
   
 ```
@@ -216,7 +220,11 @@ SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
 ```
 
 
+## Stop ```Hive```
 
+```sh
+hive --service hiveserver2 stop
+```
 
 
 # Set up ```HCatalog``` & ```WebHCat```
@@ -229,3 +237,4 @@ export WEBCAT_HOME=/usr/local/hadoop_eco/hive/hcatalog
 export HCATALOG_CONF_DIR=$HIVE_HOME/hcatalog/conf
 export PATH=$PATH:$HCATALOG_HOME/bin:$WEBCAT_HOME/sbin
 ```
+
