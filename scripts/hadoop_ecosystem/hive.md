@@ -116,6 +116,7 @@ property.hive.log.dir = /usr/local/hadoop_log/hive/logs/${sys:user.name}
 
 ```
 
+## Start Hadoop
 
 ## Reset ```Hive Metastore```(>=```Hive2.x```) + Upgrade
 ```sh
@@ -144,13 +145,21 @@ rm -Rf /usr/local/hadoop_dat/hive/metastore_db
 schematool -initSchema -dbType derby
 ```
 
-## Execute ```Hive METASTORE```
-
 ## Execute ```Hive Shell```
 ```sh
 cd /usr/local/hadoop_eco/hive/bin
 ./hive
 ----------------------------
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hadoop_eco/apache-hive-2.1.1-bin/lib/log4j-slf4j-impl-2.4.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop_eco/apache-tez-0.8.4-src/tez-dist/target/tez-0.8.4/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/usr/local/hadoop_eco/apache-hive-2.1.1-bin/conf/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez, spark) or using Hive 1.X releases.
+hive> 
 
 ```
 ## Execute ```beeline```
@@ -191,6 +200,10 @@ Optional: Some can be overridden by setting ```~/.bashrc```:
 ## Execute ```Hiveserver2```
 ```sh
 hive --service hiveserver2 &
+```
+or
+```sh
+hiveserver2
 ```
 ```sh
 SLF4J: Class path contains multiple SLF4J bindings.
