@@ -340,6 +340,7 @@ SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
 ```sh
 beeline
 beeline> !connect jdbc:hive2://hd0m1:10000
+---------------------------------------------------
 Connecting to jdbc:hive2://hd0m1:10000
 Enter username for jdbc:hive2://hd0m1:10000: dawkiny
 Enter password for jdbc:hive2://hd0m1:10000: ***
@@ -379,6 +380,13 @@ org.apache.hive.jdbc.HiveDriver
 ```sh
 hive --service hiveserver2 stop
 ```
+
+## Fix ```SLF4J``` path
+```sh
+SLF4J: Class path contains multiple SLF4J bindings.
+```
+
+
 
 
 # Set up ```HCatalog``` & ```WebHCat```
