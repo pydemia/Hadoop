@@ -58,10 +58,13 @@ cd mariadb
 ./scripts/mysql_install_db --defaults-file=~/my.cnf 
 './bin/mysqladmin' -u root password root
 './bin/mysqladmin' -u root -h hd0m1 password root
-'./bin/mysql_secure_installation'
-
-
 ```
+Optional:
+```sh
+'./bin/mysql_secure_installation'
+```
+
+
 ## Start ```mariadb```
 ```sh
 cd /usr/local/hadoop_eco/mariadb
