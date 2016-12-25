@@ -19,9 +19,10 @@
 * [Pig](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/pig.md)  
 * [Tez](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez.md)  
 * [Tez UI](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez_ui.md)  
----
-
 * [Hive](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive.md)  
+
+
+---
 * [Oozie](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/oozie.md)  
 * [Flume](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/flume.md)  
 * [Storm](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/storm.md)  
