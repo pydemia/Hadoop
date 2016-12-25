@@ -350,6 +350,28 @@ Transaction isolation: TRANSACTION_REPEATABLE_READ
 0: jdbc:hive2://hd0m1:10000> 
 
 ```
+## Use ```Squirrel SQL```
+
+### Name
+Hive JDBC Driver
+
+### Example URL
+```sh
+jdbc:hive2://192.168.56.11:10000
+```
+
+### Extra Class Path
+in ```$HADOOP_HOME/share/hadoop/common```  
+* ```hadoop-common-*.jar```  
+in ```$HADOOP_HOME/share/hadoop/common/lib```
+* ```hadoop-auth-*.jar```  
+in ```$HIVE_HOME/jdbc```
+* ```hive-jdbc-*-standalone.jar```  
+
+### Class Name
+```sh
+org.apache.hive.jdbc.HiveDriver
+```
 
 
 ## Stop ```Hive```
