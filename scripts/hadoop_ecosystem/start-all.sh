@@ -26,6 +26,10 @@ sqoop2-server start
 # Kafka
 kafka-server-start.sh server.properties
 
+# Hive
+#hiveserver2
+hive --service hiveserver2 &
+
 
 
 ##########################################
