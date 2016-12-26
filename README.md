@@ -20,7 +20,7 @@
 * [Tez](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez.md)  
 * [Tez UI](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/tez_ui.md)  
 * [Hive](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive.md)  
-  1. [Hive](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive_usagemd)  
+  1. [Hive_Usage](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/hive_usage.md)  
 
 ---
 * [Oozie](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/oozie.md)  
