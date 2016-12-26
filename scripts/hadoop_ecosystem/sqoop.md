@@ -23,7 +23,7 @@ export SQOOP_HOME=/usr/local/hadoop_eco/sqoop
 export PATH=$PATH:$SQOOP_HOME/bin
 export SQOOP_CONF_DIR=$SQOOP_HOME/conf
 export SQOOP_CLASS_PATH=$SQOOP_CONF_DIR
-export SQOOP_SERVER_EXTRA_LIB=/usr/local/hadoop_eco/sqoop/libs
+export SQOOP_SERVER_EXTRA_LIB=/usr/local/hadoop_eco/sqoop/lib
 ```
 ```sh
 source ~/.bashrc
@@ -44,6 +44,19 @@ ln -s /usr/local/hadoop/share/hadoop/mapreduce/lib/*.jar /usr/local/hadoop_eco/s
 
 ln -s /usr/local/hadoop/share/hadoop/yarn/*.jar /usr/local/hadoop_eco/sqoop/server/lib
 ln -s /usr/local/hadoop/share/hadoop/yarn/lib/*.jar /usr/local/hadoop_eco/sqoop/server/lib
+```
+```sh
+ln -s /usr/local/hadoop/share/hadoop/common/*.jar /usr/local/hadoop_eco/sqoop/lib
+ln -s /usr/local/hadoop/share/hadoop/common/lib/*.jar /usr/local/hadoop_eco/sqoop/lib
+
+ln -s /usr/local/hadoop/share/hadoop/hdfs/*.jar /usr/local/hadoop_eco/sqoop/lib
+ln -s /usr/local/hadoop/share/hadoop/hdfs/lib/*.jar /usr/local/hadoop_eco/sqoop/lib
+
+ln -s /usr/local/hadoop/share/hadoop/mapreduce/*.jar /usr/local/hadoop_eco/sqoop/lib
+ln -s /usr/local/hadoop/share/hadoop/mapreduce/lib/*.jar /usr/local/hadoop_eco/sqoop/lib
+
+ln -s /usr/local/hadoop/share/hadoop/yarn/*.jar /usr/local/hadoop_eco/sqoop/lib
+ln -s /usr/local/hadoop/share/hadoop/yarn/lib/*.jar /usr/local/hadoop_eco/sqoop/lib
 ```
 In case ```failed to create symbolic link: File exists```, just ignore it and keep forward.
 
@@ -114,15 +127,15 @@ allowed.system.users=dawkiny
  
 ## For 3rd-party ```jar```
 ```sh
-mkdir -p /usr/local/hadoop_eco/sqoop/libs/
+mkdir -p /usr/local/hadoop_eco/sqoop/lib/
 
-cp mysql-jdbc*.jar /usr/local/hadoop_eco/sqoop/libs/
-cp postgresql-jdbc*.jar /usr/local/hadoop_eco/sqoop/libs/
+cp mysql-jdbc*.jar /usr/local/hadoop_eco/sqoop/lib/
+cp postgresql-jdbc*.jar /usr/local/hadoop_eco/sqoop/lib/
 ```
 or
 
 ```sh
-cp ~/connectors/*.jar /usr/local/hadoop_eco/sqoop/libs/
+cp ~/connectors/*.jar /usr/local/hadoop_eco/sqoop/lib/
 ```
 
 
@@ -139,6 +152,10 @@ cd /usr/local/hadoop_eco/sqoop/conf
 vi sqoop.properties 
 ```
 ```sh
+org.apache.sqoop.connector.autoupgrade=true
+org.apache.sqoop.driver.autoupgrade=true
+
+
 org.apache.sqoop.log4j.appender.file.File=/usr/local/hadoop_log/sqoop/sqoop.log
 # Default: conf/@LOGDIR@/sqoop.log
 
@@ -148,8 +165,13 @@ org.apache.sqoop.log4j.appender.audit.File=/usr/local/hadoop_log/sqoop/audit.log
 org.apache.sqoop.repository.sysprop.derby.stream.error.file=/usr/local/hadoop_log/sqoop/derbyrepo.log
 # Default: conf/@LOGDIR@/derbyrepo.log
 
-org.apache.sqoop.submission.engine.mapreduce.configuration.directory=/usr/local/hadoop/etc/hadoop/
+org.apache.sqoop.submission.engine.mapreduce.configuration.directory=/usr/local/hadoop/etc/hadoop
 # Default: /etc/hadoop/lib/
+
+org.apache.sqoop.connector.external.loadpath=/usr/local/hadoop_eco/sqoop/lib
+org.apache.sqoop.classpath.extra=/usr/local/hadoop_eco/sqoop/lib
+
+
 ```
 Default or very little tweaking should be **_sufficient_** in most common cases.
 
@@ -215,6 +237,22 @@ cd /usr/local/hadoop_eco/sqoop/conf/@LOGDIR@
 ```
 
 ## Use Client with ```sqoop2-shell```
+```sh
+sqoop2-tool verify
+Setting conf dir: /usr/local/hadoop_eco/sqoop/conf
+Sqoop home directory: /usr/local/hadoop_eco/sqoop
+Sqoop tool executor:
+	Version: 1.99.7
+	Revision: 435d5e61b922a32d7bce567fe5fb1a9c0d9b1bbb
+	Compiled on Tue Jul 19 16:08:27 PDT 2016 by abefine
+Running tool: class org.apache.sqoop.tools.tool.VerifyTool
+2016-12-26 13:41:14,597 INFO  [main] core.SqoopServer (SqoopServer.java:initialize(55)) - Initializing Sqoop server.
+2016-12-26 13:41:14,609 INFO  [main] core.PropertiesConfigurationProvider (PropertiesConfigurationProvider.java:initialize(99)) - Starting config file poller thread
+Verification was successful.
+Tool class org.apache.sqoop.tools.tool.VerifyTool has finished correctly.
+
+```
+
 
 ```sh
 sqoop2-shell
@@ -252,6 +290,19 @@ sqoop:000>
 ------------------------
 ```
 
+## Set ```server```
+```sh
+sqoop:000> set server --host hd0m1
+-----------------------------------
+Server is set successfully
+
+sqoop:000> show server --all
+-----------------------------------
+Server host: hd0m1
+Server port: 12000
+Server webapp: sqoop
+
+```
 
   
   
