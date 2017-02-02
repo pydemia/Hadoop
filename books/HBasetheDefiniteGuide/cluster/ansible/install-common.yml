@@ -1,0 +1,29 @@
+---
+# Sub playbook to install all common components needed.
+
+- name: Apply common configuration to all nodes
+  hosts: all
+  roles:
+    - common
+- name: Set up Kerberos KDC
+  hosts: kdc_server
+  roles:
+    - { role: kdc-server, when: SECURITY_ENABLED == true }
+- name: Install Kerberos Clients
+  hosts: cluster
+  roles:
+    - { role: krb-client, when: SECURITY_ENABLED == true }
+
+- name: Install Hadoop common components
+  hosts: all
+  roles:
+    - hadoop
+
+- name: Install zookeeper nodes
+  hosts: zookeepers
+  roles:
+    - zookeeper
+- name: Install Hbase
+  hosts: cluster
+  roles:
+    - hbase
