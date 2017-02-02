@@ -154,7 +154,7 @@ vi hive-site.xml
 <configuration>
   <property>
     <name>hive.exec.scratchdir</name>
-    <value>/tmp/hive/exec_scratch/${system:user.name}</value>
+    <value>/tmp/hive/exec_scratch</value>
     <description>Scratch space for Hive jobs</description>
   </property>
   <property>
