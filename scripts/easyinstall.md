@@ -152,6 +152,7 @@ shdo ufw show raw
 
 sudo ufw allow <port>/<optional: protocol>
 sudo ufw allow 22/tcp
+sudo ufw allow 8080/tcp
 
 sudo ufw allow from <ip address>
 ```
