@@ -11,7 +11,7 @@
 * [Hadoop Directory Management](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/manage_dir.md)  
 
 ## Easy Install
-* [Install Hadoop with Ambari]()
+* [Install Hadoop with Ambari](https://github.com/pydemia/Hadoop/blob/master/scripts/easyinstall.md#easyinstall)
 
 
 ## Hadoop Ecosystem
