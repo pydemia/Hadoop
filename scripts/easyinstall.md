@@ -130,28 +130,39 @@ sudo apt-get install ambari-server -y
 sudo ambari-server setup -s
 sudo ambari-server start
 ```
+## Port Forwarding (to vm)
 
 ```sh
-mkdir apps
-cd apps
-wget http://www.apache.org/dist/ambari/ambari-2.4.2/apache-ambari-2.4.2-src.tar.gz
-tar zxvf apache-ambari-2.4.2-src.tar.gz
-ln -s apache-ambari-2.4.2-src apache-ambari
-cd apache-ambari
-
+sudo apt-get install openssh-server
 ```
+
+check `hostname`
 
 ```sh
-cd /usr/local/
-sudo wget http://www.us.apache.org/dist/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz
-sudo tar -xzvf hadoop-2.7.2.tar.gz >> /dev/null
-sudo mv hadoop-2.7.2 /usr/local/hadoop
-sudo mkdir -p /usr/local/hadoop_work/hdfs/namenode
-sudo mkdir -p /usr/local/hadoop_work/hdfs/namesecondary
-
-sudo chown -R [user]:hadoop hadoop
-sudo chown -R [user]:hadoop hadoop_work
+vi /etc/hostname
+vi /etc/hosts
 ```
+
+UFW Setting
+
+```sh
+sudo ufw enable
+sudo ufw status verbose
+shdo ufw show raw
+
+sudo ufw allow <port>/<optional: protocol>
+sudo ufw allow 22/tcp
+
+sudo ufw allow from <ip address>
+```
+
+
+```sh
+10.0.2.15
+```
+| service | port |
+| :-----: | :--: |
+| ambari | 8080 |
 
 
 
