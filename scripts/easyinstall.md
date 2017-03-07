@@ -31,26 +31,6 @@ address 192.168.56.101
 netmask 255.255.255.0
 ```
 
-```sh
-sudo vi /etc/network/interfaces
-```
-
-```sh
-auto enp0s3
-iface enp0s3 inet dhcp
-
-
-auto enp0s8
-iface enp0s8 inet static
-address 192.168.56.11
-netmask 255.255.255.0
-network 192.168.56.0
-gateway 192.168.56.1
-broadcast 192.168.56.255
-
-dns-nameservers 168.126.63.1 168.126.63.2 8.8.8.8
-```
-
 
 ```sh
 sudo vi /etc/resolv.conf
@@ -79,8 +59,14 @@ shutdown -r now
 sudo apt-get update
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install oracle-java7-installer
+sudo apt-get install oracle-java8-installer
 java -version
+
+sudo apt-get install default-jdk # alternavitives
+
+vi ~/.bashrc
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 ```
 
 ## Setup IP alias
@@ -89,19 +75,19 @@ sudo vi /etc/hosts
 
 127.0.0.1         localhost
 
-192.168.56.11     hd0m1
-192.168.56.12     hd0m2
+192.168.56.101     hdc-namenode-0
+#192.168.56.102     hdc-namenode-1
 
-192.168.56.21     hd0s1
-192.168.56.22     hd0s2
-192.168.56.23     hd0s3
-192.168.56.24     hd0s4
+192.168.56.111     hdc-datanode-0
+192.168.56.112     hdc-datanode-1
+192.168.56.113     hdc-datanode-2
+#192.168.56.114     hdc-datanode-3
 ```
 
 ## Setup SSH Server
 
 ```sh
-apt-get install openssh-server
+sudo apt-get install openssh-server
 ssh-keygen -t rsa -P ""
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
@@ -111,19 +97,48 @@ chmod 600 ~/.ssh/authorized_keys
 ## Configuring Key Based Login
 
 ```sh
- su - hadoop
 ssh-keygen -t rsa
-ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-master
-ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-slave-1
-ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-slave-2
-chmod 0600 ~/.ssh/authorized_keys
-exit
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-namenode-0
+#ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-namenode-1
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-datanode-0
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-datanode-1
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-datanode-2
+#ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-datanode-3
+#chmod 0600 ~/.ssh/authorized_keys
+
 ```
 
 ## Prepare DataNode (Clone VM to IMPORT)
 
+## Change Hostname
 
-## Install Hadoop distribution
+```sh
+sudo vi /etc/hostname
+sudo vi /etc/network/interfaces
+```
+
+## Install Hadoop with Ambari
+
+```
+wget -nv http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/2.4.1.0/ambari.list -O /etc/apt/sources.list.d/ambari.list
+
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD 
+
+apt-get update 
+
+```
+
+```sh
+mkdir apps
+cd apps
+wget http://www.apache.org/dist/ambari/ambari-2.4.2/apache-ambari-2.4.2-src.tar.gz
+tar zxvf apache-ambari-2.4.2-src.tar.gz
+ln -s apache-ambari-2.4.2-src apache-ambari
+cd apache-ambari
+
+
+
+```
 
 ```sh
 cd /usr/local/
@@ -140,11 +155,11 @@ sudo chown -R [user]:hadoop hadoop_work
 ## Setup Environment
 
 ```sh
-cd /usr/lib/jvm/java-7-oracle/jre
+cd /usr/lib/jvm/java-8-oracle/jre
 java -version
 ```
 ```sh
-/usr/lib/jvm/java-7-oracle/jre# vi ~/.bashrc
+/usr/lib/jvm/java-8-oracle/jre# vi ~/.bashrc
 
 # Hadoop
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
