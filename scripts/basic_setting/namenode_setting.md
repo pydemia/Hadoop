@@ -11,7 +11,7 @@ sudo passwd root
 ## Create Group for HADOOP User
 
 ```sh
-sudo groupadd hadoop
+sudo useradd -U hadoop
 sudo usermod -g hadoop [username]
 ```
 
