@@ -10,6 +10,10 @@
 ## Hadoop Directory Management
 * [Hadoop Directory Management](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/manage_dir.md)  
 
+## Easy Install
+* [Install Hadoop with Ambari]()
+
+
 ## Hadoop Ecosystem
 * [Ambari](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/ambari.md)  
 * [Zookeeper](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/zookeeper.md)  
