@@ -4,6 +4,9 @@
 
 # Easy Install
 
+* ssh
+* samba
+
 ## SU Password
 ```sh
 sudo passwd root
