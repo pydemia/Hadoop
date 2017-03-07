@@ -2,7 +2,7 @@
 
 
 
-# Hadoop Setting - 1.NameNode
+# Easy Install
 
 ## SU Password
 ```sh
