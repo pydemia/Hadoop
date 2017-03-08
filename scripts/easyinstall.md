@@ -113,11 +113,29 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hdc-datanode-2
 
 ## Prepare DataNode (Clone VM to IMPORT)
 
+```sh
+vboxmanage startvm hdc-master-0 --type headless
+vboxmanage startvm hdc-slave-0 --type headless
+vboxmanage startvm hdc-slave-1 --type headless
+vboxmanage startvm hdc-slave-2 --type headless
+
+```
+
+
 ## Change Hostname
 
 ```sh
 sudo vi /etc/hostname
 sudo vi /etc/network/interfaces
+```
+
+## Establish `ssh` Connections
+
+```sh
+ssh hadoop@192.168.56.101
+ssh hadoop@192.168.56.111
+ssh hadoop@192.168.56.112
+ssh hadoop@192.168.56.113
 ```
 
 ## Install Hadoop with Ambari
@@ -132,6 +150,7 @@ sudo apt-get install ambari-server -y
 
 sudo ambari-server setup -s
 sudo ambari-server start
+
 ```
 ## Port Forwarding (to vm)
 
