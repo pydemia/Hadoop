@@ -20,6 +20,22 @@ Username:
 sudo passwd root
 ```
 
+
+## Setup IP alias
+```sh
+vi /etc/hosts
+
+127.0.0.1         localhost
+
+192.168.56.101     hdc-master-0
+#192.168.56.102     hdc-master-1
+
+192.168.56.111     hdc-slave-0
+192.168.56.112     hdc-slave-1
+192.168.56.113     hdc-slave-2
+#192.168.56.114     hdc-slave-3
+```
+
 ## IP change(Install: Internet with ```enp0s3```)
 
 ### Ubuntu:
@@ -130,21 +146,35 @@ hostnamectl set-hostname hdc-slave-2.hdc.com
 ```sh
 ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+
+#접속확인
+ssh root@hdc-master-0.hdc.com
+ssh root@hdc-slave-0.hdc.com
+ssh root@hdc-slave-1.hdc.com
+ssh root@hdc-slave-2.hdc.com
+ 
+
+scp -r /root/.ssh root@hdc-slave-0.hdc.com:/root
+scp -r /root/.ssh root@hdc-slave-1.hdc.com:/root
+scp -r /root/.ssh root@hdc-slave-2.hdc.com:/root
+ 
+
+
 cat ~/.ssh/id_dsa.pub | ssh root@hdc-master-0.hdc.com 'cat >> ~/.ssh/authorized_keys'
+cat ~/.ssh/id_dsa.pub | ssh root@hdc-slave-0.hdc.com 'cat >> ~/.ssh/authorized_keys'
+cat ~/.ssh/id_dsa.pub | ssh root@hdc-slave-1.hdc.com 'cat >> ~/.ssh/authorized_keys'
+cat ~/.ssh/id_dsa.pub | ssh root@hdc-slave-2.hdc.com 'cat >> ~/.ssh/authorized_keys'
 
 ssh root@hdc-slave-0.hdc.com 'mkdir -p ~/.ssh'
 ssh root@hdc-slave-1.hdc.com 'mkdir -p ~/.ssh'
 ssh root@hdc-slave-2.hdc.com 'mkdir -p ~/.ssh'
 
-cat ~/.ssh/id_dsa.pub | ssh root@hdc-slave-0.hdc.com 'cat >> ~/.ssh/authorized_keys'
-cat ~/.ssh/id_dsa.pub | ssh root@hdc-slave-1.hdc.com 'cat >> ~/.ssh/authorized_keys'
-cat ~/.ssh/id_dsa.pub | ssh root@hdc-slave-2.hdc.com 'cat >> ~/.ssh/authorized_keys'
- 
+
 #접속확인
-ssh hdc-master-0.hdc.com
-ssh hdc-slave-0.hdc.com
-ssh hdc-slave-0.hdc.com
-ssh hdc-slave-0.hdc.com
+ssh root@hdc-master-0.hdc.com
+ssh root@hdc-slave-0.hdc.com
+ssh root@hdc-slave-1.hdc.com
+ssh root@hdc-slave-2.hdc.com
 
 ```
 
@@ -286,7 +316,7 @@ ssh hadoop@192.168.56.113
 
 Ubuntu:
 ```
-wget -nv http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/2.4.0.1/ambari.list -O /etc/apt/sources.list.d/ambari.list
+wget -nv http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/2.4.2.0/ambari.list -O /etc/apt/sources.list.d/ambari.list
 
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
 
@@ -303,7 +333,7 @@ CentOS:
 
 ```sh
 cd /etc/yum.repos.d
-wget http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.4.1.0/ambari.repo
+wget http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.4.2.0/ambari.repo
 yum repolist
 yum install ambari-server -y
 
