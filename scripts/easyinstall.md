@@ -389,6 +389,9 @@ sudo ufw allow from <ip address>
 | ambari | 8080 |
 
 
+## Notice
+
+To use `ambari` on a local client outside, `/etc/hosts` file of the client should have its aliases.
 
 
 [← back to *Main Page*](https://github.com/dawkiny/Hadoop/blob/master/README.md)
