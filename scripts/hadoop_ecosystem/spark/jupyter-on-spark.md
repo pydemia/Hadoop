@@ -1,16 +1,20 @@
 # Jupyter On Spark
 
+```sh
+ssh root@192.168.56.101
+```
+
 ## Install Scala
 
 ```sh
 cd ~
 wget http://downloads.lightbend.com/scala/2.10.5/scala-2.10.5.rpm
-sudo yum install scala-2.10.5.rpm
-sudo yum install git
+yum install scala-2.10.5.rpm
+yum install git
 git clone https://github.com/alexarchambault/jupyter-scala.git
 
 wget http://dl.bintray.com/sbt/rpm/sbt-0.13.5.rpm
-sudo yum localinstall sbt-0.13.5.rpm
+yum localinstall sbt-0.13.5.rpm
 cd jupyter-scala
 sbt cli/packArchive
 ./jupyter-scala
@@ -20,8 +24,8 @@ jupyter kernelspec list
 ## Install Anaconda
 
 ```sh
-sudo yum install scala
-sudo yum install bzip2
+yum install scala
+yum install bzip2
 wget https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
 DIR >> yes
 PATH >> yes
@@ -48,10 +52,15 @@ conda install jupyter
 
 ```sh
 pip install -i https://pypi.anaconda.org/hyoon/simple toree
+jupyter toree install --spark_home=/usr/hdp/current/spark-client --python_exec="python2.7" --interpreters=Scala,PySpark,SparkR,SQL --user
 
-su root
+```
+
+```sh
 cd /usr/hdp/current
 ln -s hadoop-client hadoop
+jupyter toree install --spark_home=$SPARK_HOME --user
+jupyter toree install --spark_home=$SPARK_HOME --interpreters=PySpark --user
 jupyter toree install --python_exec=python2 --spark_home=/usr/hdp/current/spark-client --interpreters=Scala,PySpark,SparkR,SQL --spark_opts='--master=local[0]'
 ```
 
