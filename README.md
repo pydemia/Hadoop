@@ -32,6 +32,7 @@
 * [Storm](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/storm.md)  
 * [Mahout](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/mahout.md)  
 * [Spark](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/spark.md)  
+  * [Install Jupyter on Spark Master]()
 
 
 * [Avro](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/avro.md)  
