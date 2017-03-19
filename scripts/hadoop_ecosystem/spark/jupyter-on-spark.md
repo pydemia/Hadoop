@@ -4,8 +4,8 @@
 
 ```sh
 cd ~
-wget http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.rpm
-sudo yum install scala-2.11.8.rpm
+wget http://downloads.lightbend.com/scala/2.10.5/scala-2.10.5.rpm
+sudo yum install scala-2.10.5.rpm
 sudo yum install git
 git clone https://github.com/alexarchambault/jupyter-scala.git
 
