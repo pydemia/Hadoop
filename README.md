@@ -37,3 +37,13 @@
 
 * [Avro](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/avro.md)  
 * [Slider](https://github.com/dawkiny/Hadoop/blob/master/scripts/hadoop_ecosystem/slider.md) 
+
+
+### VirtualBox Import Appliances
+
+After `Import Appliances`:
+
+```sh
+rm /etc/udev/rules.d/70-persistent-ipoib.rules 
+shutdown -r now
+```
