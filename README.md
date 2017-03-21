@@ -45,5 +45,6 @@ After `Import Appliances`:
 
 ```sh
 rm /etc/udev/rules.d/70-persistent-ipoib.rules 
+service network restart
 shutdown -r now
 ```
