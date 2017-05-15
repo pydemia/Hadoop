@@ -408,7 +408,16 @@ sudo ufw allow from <ip address>
 ```
 | service | port |
 | :-----: | :--: |
+| ssh | 2222 |
 | ambari | 8080 |
+| hdfs ui | 50070 |
+| hive | 2181 |
+| hive2 | 10000 |
+| jupyter | 5511 |
+| namenode | 10010 |
+| spark | 4040 |
+| zeppelin | 9090 |
+| zeppelin ui | 9995 |
 
 
 ## Notice
