@@ -190,6 +190,28 @@ chkconfig ntpd on
 service --status-all | grep ntpd
 
 ```
+
+Configure `master` as a NTP Server
+
+```sh
+vi /etc/ntp.conf:
+server  127.127.1.0     # local clock
+fudge   127.127.1.0 stratum 10
+```
+
+Configure `slave` as NTP Clients
+
+```sh
+vi /etc/ntp.conf
+server hdc-master-0.hdc.com
+```
+
+```sh
+service ntpd start
+ntpq -p
+ntpd -u hdc-master-0.hdc.com
+```
+
 4N-CHDC
 Actually, `chrony` is better.
 
