@@ -108,6 +108,13 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+(Optional) Convert `ssh` to `pem`:
+
+```sh
+ssh-keygen -f rsa.pub -e -m pem
+
+```
+
 ## Configuring Key Based Login
 
 ```sh
