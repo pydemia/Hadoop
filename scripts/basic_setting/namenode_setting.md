@@ -112,7 +112,7 @@ chmod 600 ~/.ssh/authorized_keys
 
 ```sh
 ssh-keygen -f rsa.pub -e -m pem
-
+openssl rsa -in ~/.ssh/id_rsa -outform pem > id_rsa.pem
 ```
 
 ## Configuring Key Based Login
